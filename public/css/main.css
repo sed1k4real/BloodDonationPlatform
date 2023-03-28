@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+:root
+{
+    --color-primary: #FF6767;
+    --color-grey: #B1B1B1;
+    --color-light-grey: #F5F5F5;
+    --color-dark-grey: #2c2c2c;
+    --color-white: #fff;
+    --color-black: #000;
+
+    --radius-0: 0.6rem;
+    --radius-1: 1rem;
+    --radius-2: 3rem;
+    --radius-3: 5rem;
+
+    --transition-0: all 100ms ease-in-out;
+    --transition-1: all 250ms ease-in-out;
+    --transition-2: all 350ms ease-in-out;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: none;
+    text-decoration: none;
+    list-style: none;
+
+    box-sizing: border-box;
+    font-family: Poppins;
+    font-weight: 400;
+    color: inherit;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+h2 {
+font-size: 1.4rem;
+font-weight: 500;
+}
+
+h3 {
+font-size: 1rem;
+font-weight: 400;
+}
+
+h4 {
+font-size: 0.8rem;
+font-weight: 400;
+}
+
+.navbar-main
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100vw;
+    padding-left: 1rem ;
+    padding-right: 1rem ;
+    background-color: var(--color-white);
+    box-shadow: 0px 6px 6px #0000000c;
+    z-index: 10;
+}
+a:visited
+{
+    color: inherit;
+    transition: var(--transition-1);
+}
+.navbar-main-logo
+{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.navbar-main-logo span
+{
+    color: var(--color-primary);
+    font-weight: 600;
+}
+.navbar-main ul
+{
+    display: flex;
+    padding: 0.4rem 0 0.4rem 0;
+}
+.navbar-main ul li
+{
+    padding: 0.6rem 2rem 0.6rem 2rem;
+}
+.navbar-main ul li:last-child a
+{
+    background-color: var(--color-primary);
+    color: #fff;
+    border-radius: 4rem;
+    padding: 0.4rem 0 0.4rem 0;
+}
+
+.navbar-main ul li a:hover
+{
+    
+    color: var(--color-primary);
+    transition: var(--transition-1);
+}
+.navbar-main ul li:last-child a:hover
+{
+    color: inherit;
+}
+
+.navbar-main-cta
+{
+    background-color: var(--color-primary);
+    color: #fff;
+    border-radius: 4rem;
+}
+
+.active a
+{
+    color: var(--color-primary);
+}
+/*---------------------------- End Navbar -----------------------------*/
+
+.home-container
+{
+    margin: 6rem 7rem 5rem 7rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    min-width: 50rem;
+}
+
+.home-container-01
+{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.home-container-01 h1 
+{
+    font-size: 2.5rem;
+}
+.home-container-01 h1 span
+{
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.home-container-01 img
+{
+    width: 35vw;
+    max-width: 600px;
+    height: auto;
+}
+.home-container .heart
+{
+    width: 7vw;
+    max-width: 100px;
+}
+
+.home-container-02
+{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.home-container-02-board
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.home-container-02-cards
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5rem;
+}
+.home-container-02-cards .card
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 5px 12px #00000025;
+    padding: 2rem;
+    border-radius: var(--radius-1);
+    transition: var(--transition-1);
+    }
+.home-container-02-cards .card:hover
+{
+    transform: scale(1.05);
+    transition: var(--transition-1);
+    color: var(--color-primary);
+}
+
+.home-container-02-cards .card a
+{
+    font-weight: 500;
+}
+.home-container-02-cards .card .material-symbols-outlined
+{
+    transform: scale(1.5);
+    padding: 1.5rem;
+}
+
+.home-container-03
+{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.home-container-03 a
+{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.8rem 1.6rem 0.8rem 1.6rem;
+    border-radius: var(--radius-3);
+}
+.home-container-03-board
+{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.home-container-03 .booknow
+{
+    width: 25vw;
+    max-width: 600px;
+    height: auto;
+}
+
+/*---------------------------- End Home -----------------------------*/
+
+.signup
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 15%;
+    bottom: auto;
+    left: 25%;
+    right: 25%;
+}
+.signup-form
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.8rem;
+    width: 60vw;
+    min-width: 30rem;
+    margin: 3rem 0 3rem 0;
+}
+.signup-form div:nth-child(11), .signup-form div:nth-child(12)
+{
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-form label
+{
+    font-weight: 300;
+}
+.signup-form input, .signup-form select 
+{
+    background-color: var(--color-light-grey);
+    padding: 0.6rem;
+    border-radius: var(--radius-0);
+}
+.signup-form-input
+{
+    width: 100%;
+    border: 2px solid transparent;
+    transition: var(--transition-0);
+}
+.signup-form-input:focus
+{
+    border: 2px solid var(--color-primary);
+    transition: var(--transition-0);
+}
+
+.signup-form-select-01, .signup-form-select-02
+{
+    width: 100%;
+}
+.signup-form-radio
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.signup-form-radio input:checked
+{
+    background-color: var(--color-primary);
+    color: #fff;
+}
+.signup-form-radio fieldset
+{
+    grid-column: span 2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.signup-form-checkbox
+{
+    margin: 0.6rem;
+}
+.signup-form-checkbox:checked
+{
+    background-color: var(--color-primary);
+}
+.signup-form button
+{
+    color:#fff;
+    background-color: var(--color-primary);
+    padding: 1rem;
+    width: 20%;
+    min-width: 10rem;
+    border-radius: var(--radius-2);
+    font-size: 15px;
+}
+.signup-form button:hover
+{
+    cursor: pointer;
+}
+/*---------------------------- End sign up -----------------------------*/
+.login
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 25%;
+    bottom: 25%;
+    left: 25%;
+    right: 25%;
+}
+.login-form
+{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1.8rem;
+    width: 45vw;
+    min-width: 20rem;
+    max-width: 40rem;
+    margin: 3rem 0 3rem 0;
+}
+.login-form input
+{
+    border: 2px solid transparent;
+    transition: var(--transition-0);
+    background-color: var(--color-light-grey);
+    padding: 0.6rem;
+    border-radius: var(--radius-0);
+    align-items: center;
+    width: 100%;
+}
+.login-form input:focus
+{
+    border: 2px solid var(--color-primary);
+    transition: var(--transition-0);
+}
+.login-form label
+{
+    font-weight: 300;
+}
+.login-form div:nth-child(3)
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form button
+{
+    color:#fff;
+    background-color: var(--color-primary);
+    padding: 1rem;
+    width: 20%;
+    min-width: 10rem;
+    border-radius: var(--radius-2);
+    font-size: 15px;
+}
+.login-form button:hover
+{
+    cursor: pointer;
+}
