@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +7,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0" />
-    <title>Navbar</title>
+    <title>BD - @yield('title')</title>
 </head>
 
 <body>
@@ -19,5 +20,8 @@
             <li class="navbar-main-cta"><a href="{{ route('login') }}">Login</a></li>
         </ul>
     </nav>
+
+    @yield('content')
+
 </body>
 </html>
