@@ -15,16 +15,16 @@
                 <div>
                     <label for="">Email</label><br>
                     <input type="email" name="email" value="{{old('email')}}" placeholder="xyz123@email.com" required>
-                    @if(Session::has('emailError'))
+                    <!-- @if(Session::has('emailError'))
                             <span class="text-danger">{{Session::get('emailError')}}</span>
-                    @endif
+                    @endif -->
                     <span class="text-danger">@error('email') {{$message}} @enderror</span>
                 </div>
                 <div>
                     <label for="">Password</label><br>
                     <input type="password" name="password" placeholder="Minimum is 6">
-                    @if(Session::has('passError'))
-                            <span class="text-danger">{{Session::get('passError')}}</span>
+                    @if(Session::has('credentialError'))
+                            <span class="text-danger">{{Session::get('credentialError')}}</span>
                     @endif
                     <span class="text-danger">@error('password') {{$message}} @enderror</span>
                 </div>

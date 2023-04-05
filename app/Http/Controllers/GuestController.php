@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Session;
 
@@ -44,26 +45,31 @@ class GuestController extends Controller
             'password'=>'required|min:6|max:32'
         ]);
 
-        // User model
-        $user = new User();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->phone_number = $request->phone_number;
-        $user->birthday = $request->birthday;
-        $user->blood_type = $request->blood_type;
-        $user->gender = $request->gender;
-        $user->role = $request->role;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-
+        $data = $request->all();
+        $check = $this->create($data);
+        
         // Result message
-        $res = $user->save();
-        if($res)
-        {
-            return redirect()->intended('login')->with('successMessage', 'You have registered successfuly');
-        }else
+        if(!$check['id'])
         {
             return back()->with('failMessage', 'Oops! Something went wrong');
+        }else
+        {
+            return redirect()->intended('login')->with('successMessage', 'You have registered successfuly');
         }
+    }
+
+    public function create(array $data)
+    {
+        return User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone_number' => $data['phone_number'],
+            'birthday' => $data['birthday'],
+            'blood_type' => $data['blood_type'],
+            'gender' => $data['gender'],
+            'role' => $data['role'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password'])
+        ]);
     }
 }

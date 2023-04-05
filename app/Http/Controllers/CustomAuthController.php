@@ -3,54 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
 
 class CustomAuthController extends Controller
 {
     public function LoginUser(Request $request)
     {
-        
         $request->validate([
             'email'=>'required|email',
             'password'=>'required|min:6|max:32'
         ]);
 
-        $user = User::where('email', '=', $request->email)->first();
-        if($user)
-        {
-            if(Hash::check($request->password, $user->password)){
-                $request->session()->put('loginId', $user->id);
-                return redirect('dashboard');
-            }
-            else
-            {
-                return back()->with('passError', 'Password is incorrect');
-            }
-        }
-        else
-        {
-            return back()->with('emailError', 'Login details are not valid');
-        }
-        
-    }
+        $credentials = $request->only('email', 'password');
 
-    public function Dashboard()
-    {
-        $data = array();
-        if(session()->has('loginId'))
-        {
-            $data = User::where('id', "=", session()->get('loginId'))->first();
-            return view('dashboard', compact('data'));
+        if (!Auth::attempt($credentials))
+        { 
+            return back()->with('credentialError', 'Login details are not valid');        
         }
-        return back();
-    }
+
+        $user = User::where('id', "=", Auth::id())->first();
+        $role = Auth::user()->role;
+
+        $request->session()->put('id', $user->id);
+
+        switch( $role ){
+            case '1':
+                return redirect()->route('dashboard');
+            break;
+            
+            case '2':
+                return redirect()->route('donor.Dashboard');
+            break;
+
+            case '3':
+                return redirect()->route('reciever.Dashboard');
+            break;
+        }
+    } 
 
     public function Logout()
     {
-        if(session()->has('loginId'))
+        if(Auth::check())
         {
+            Auth::logout();
             session()->flush();
             return redirect('login');
         }
