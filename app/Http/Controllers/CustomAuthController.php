@@ -11,8 +11,8 @@ class CustomAuthController extends Controller
     public function LoginUser(Request $request)
     {
         $request->validate([
-            'email'=>'required|email',
-            'password'=>'required|min:6|max:32'
+            'email'=>'bail|required|email',
+            'password'=>'bail|required|min:6|max:32'
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -33,7 +33,7 @@ class CustomAuthController extends Controller
             break;
             
             case '2':
-                return redirect()->route('donor.Dashboard');
+                return redirect()->route('donor.booking');
             break;
 
             case '3':

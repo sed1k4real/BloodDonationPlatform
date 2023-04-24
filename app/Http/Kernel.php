@@ -67,6 +67,5 @@ class Kernel extends HttpKernel
         'isDonor' => \App\Http\Middleware\DonorMiddleware::class,
         'isReciever' => \App\Http\Middleware\RecieverMiddleware::class,
         'Guest' => \App\Http\Middleware\GuestMiddleware::class,
-        'User' => \App\Http\Middleware\UserMiddleware::class,
     ];
 }

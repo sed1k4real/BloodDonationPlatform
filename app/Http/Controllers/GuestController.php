@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Session;
 
 class GuestController extends Controller
 {
@@ -46,21 +44,7 @@ class GuestController extends Controller
         ]);
 
         $data = $request->all();
-        $check = $this->create($data);
-        
-        // Result message
-        if(!$check['id'])
-        {
-            return back()->with('failMessage', 'Oops! Something went wrong');
-        }else
-        {
-            return redirect()->intended('login')->with('successMessage', 'You have registered successfuly');
-        }
-    }
-
-    public function create(array $data)
-    {
-        return User::create([
+        $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'phone_number' => $data['phone_number'],
@@ -71,5 +55,14 @@ class GuestController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
+        
+        // Result message
+        if(!$user['id'])
+        {
+            return back()->with('failMessage', 'Oops! Something went wrong');
+        }else
+        {
+            return redirect()->intended('login')->with('successMessage', 'You have registered successfuly');
+        }
     }
 }

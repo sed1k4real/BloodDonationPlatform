@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Fonts -->
+    <!-- Fonts -->
     <link rel="stylesheet" href="../../css/admin.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0" />
+
+    <!-- Script -->
+    <script src="../../../js/jquery-3.6.4.min.js"></script>
+
     <title>Dashboard - @yield('title')</title>
 </head>
 <body>
@@ -14,8 +18,9 @@
             <a class="navbar-main-logo" href="{{ route('dashboard') }}">Blood <span>Donation</span></a>
             <div class="nav-user-info">
                 <img class="nav-profilePic" src="../../pfp.png" alt="Profile picture"/>
-                <p class="nav-username">{{ session('data')['last_name'] }} {{ session('data')['first_name'] }}</p>
-                <p class="nav-role">@switch( session('data')['role'] )
+                <p class="nav-username">{{ Auth::user()->last_name }}</p>
+                <p class="nav-username">{{ Auth::user()->first_name }}</p>
+                <p class="nav-role">@switch( Auth::user()->role )
                         @case('0')
                             Super admin
                         @break
@@ -36,8 +41,17 @@
                 <ul>
                     <li class="{{ Request::is('dashboard') ? 'active':'' }}"><span class="material-symbols-outlined">dashboard</span><a href="{{ route('dashboard') }}">Dashboard</a></li>
                     <li class="{{ Request::is('insights') ? 'active':'' }}"><span class="material-symbols-outlined">insights</span><a href="{{ route('insights') }}">Insights</a></li>
-                    <li class="{{ Request::is('requests') ? 'active':'' }}"><span class="material-symbols-outlined">Task</span><a href="{{ route('requests') }}">Requests</a></li>
-                    <li class="{{ Request::is('history') ? 'active':'' }}"><span class="material-symbols-outlined">history</span><a href="{{ route('history') }}">History</a></li>
+                    <li class="nav-dropdown">
+                        <div class="nav-requests {{ Request::is('requests/pending') || Request::is('requests/booked') || Request::is('requests/denied') || Request::is('requests/done') ? 'active':'' }}"><span class="material-symbols-outlined">Task</span>
+                        <a href="#">Requests</a></div>
+                        <ul class="dropdown-menu">
+                            <li><a class="{{ Request::is('requests/pending') ? 'active':'' }}" href=" {{ route('jobs.pending') }} ">Pending</a></li>
+                            <li><a class="{{ Request::is('requests/booked') ? 'active':'' }}" href=" {{ route('jobs.booked') }} ">Booked</a></li>
+                            <li><a class="{{ Request::is('requests/denied') ? 'active':'' }}" href=" {{ route('jobs.denied') }} ">Denied</a></li>
+                            <li><a class="{{ Request::is('requests/done') ? 'active':'' }}" href=" {{ route('jobs.done') }} ">Done</a></li>
+                        </ul>
+                    </li>
+                    <li class="{{ Request::is('history') ? 'active':'' }}"><span class="material-symbols-outlined">history</span><a href="{{ route('admin.history') }}">History</a></li>
                     <li class="{{ Request::is('settings') ? 'active':'' }}"><span class="material-symbols-outlined">settings</span><a href="{{ route('settings') }}">Settings</a></li>
                 </ul>
             </div>
@@ -50,6 +64,24 @@
                 <li class="header-notif"><a href=""><span class="material-symbols-outlined">notifications</span></a></li>
             </ul>
         </header>
+
+        <script>
+            // // Hide the dropdown menu by default
+            $(".dropdown-menu").hide();
+
+            // // Show/hide the dropdown menu based on whether it's active or not
+            $(".nav-dropdown").on("click", function () {
+                $(this).find(".dropdown-menu").toggle();
+            });
+
+            // // Close the dropdown menu when clicked outside
+            $(document).ready(function() {
+                $('.dropdown-menu').on('click', function(event) {
+                    event.stopPropagation(); // Stop click event from bubbling up to document
+                });
+            });
+
+        </script>
         @yield('main')
         <footer></footer>
 </body>

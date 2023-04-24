@@ -8,7 +8,7 @@
         <div class="login">
             <h1><span>Good to see you</span> agian!</h1>
             @if(Session::has('successMessage'))
-                    <span class="text-success">{{Session::get('successMessage')}}</span>
+                    <span class="text-success" id="message">{{Session::get('successMessage')}}</span>
             @endif
             <form class="login-form" action="{{route('login-user')}}" method="post">
                 @csrf
@@ -32,4 +32,9 @@
             </form>
         </div>
     </div>
+    <script>
+        setTimeout(function() {
+            $('#message').fadeOut('fast');
+        }, 2000); // 2000 milliseconds = 2 seconds
+    </script>
 @endsection('content')

@@ -45,6 +45,11 @@
         </form>
     </div>
     @if(Session::has('failMessage'))
-        <span class="text-danger">{{Session::get('failMessage')}}</span>
+        <span class="text-danger" id="message">{{Session::get('failMessage')}}</span>
     @endif
+    <script>
+    setTimeout(function() {
+        $('#message').fadeOut('fast');
+    }, 2000); // 2000 milliseconds = 2 seconds
+    </script>
     @endsection('content')

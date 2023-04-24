@@ -19,6 +19,10 @@ class User extends Authenticatable
         'email',
         'password'];
 
+        public function jobs()
+        {
+            return $this->hasMany(Job::class);
+        }
         //Getters
         public function getAuthIdentifier()
         {
