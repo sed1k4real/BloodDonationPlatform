@@ -9,58 +9,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     protected $fillable = [
-        'first_name',
         'last_name',
-        'phone_number',
-        'birthday',
-        'blood_type',
-        'gender',
-        'role',
+        'username',
+        'role_ref',
         'email',
+        'email_verified_at',
         'password'];
 
-        public function jobs()
+        public function donation()
         {
-            return $this->hasMany(Job::class);
+            return $this->hasMany(Donation::class);
         }
-        //Getters
-        public function getAuthIdentifier()
+        public function role()
         {
-            return $this->id;
-        }
-        public function getAuthIdentifierFirstName()
-        {
-            return $this->getAttribute('first_name');
-        }
-        public function getAuthIdentifierPhone()
-        {
-            return $this->getAttribute('phone_number');
-        }
-        public function getAuthIdentifierBirthdate()
-        {
-            return $this->getAttribute('birthday');
-        }
-        public function getAuthIdentifierBloodType()
-        {
-            return $this->getAttribute('blood_type');
-        }
-        public function getAuthPassword()
-        {
-            return $this->getAttribute('password');
-        }
-        
-        public function getRememberToken()
-        {
-            return null;
-        }
-        public function getRememberTokenName()
-        {
-            return null;
-        }
-        // Setters
-        public function setRememberToken($value)
-        {
-            return null;
+            return $this->belongsTo(Role::class);
         }
     use HasFactory;
 }

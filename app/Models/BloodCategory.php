@@ -11,5 +11,15 @@ class BloodCategory extends Model
         'ref',
         'catg',
         'symbol'];
+
+    public function donor()
+    {
+        return $this->hasMany(Donor::class);
+    }
+
+    public function bloodRequest()
+    {
+        return $this->hasMany(BloodRequest::class);
+    }
     use HasFactory;
 }

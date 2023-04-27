@@ -12,5 +12,14 @@ class Schedule extends Model
         'date',
         'time',
         'nb'];
+
+    public function planing()
+    {
+        return $this->belongsTo(Planing::class);
+    }
+    public function donation()
+    {
+        return $this->hasMany(Donation::class);
+    }
     use HasFactory;
 }

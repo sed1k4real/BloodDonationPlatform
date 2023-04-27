@@ -15,14 +15,15 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->integer('don_ref');
+            $table->unsignedBigInteger('don_ref');
             $table->string('factor1');
             $table->string('factor2');
             $table->string('factor3');
             $table->string('factor4');
             $table->string('factor5');
-
             $table->timestamps();
+
+            $table->foreign('don_ref')->references('don_ref')->on('donations')->onDelete('cascade');
         });
     }
 

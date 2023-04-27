@@ -16,5 +16,30 @@ class Donation extends Model
         'skd_ref',
         'camp_ref',
         'user_ref'];
+
+    public function donor()
+    {
+        return $this->belongsTo(Donor::class);
+    }
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class);
+    }
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function result()
+    {
+        return $this->hasMany(Result::class);
+    }
     use HasFactory;
 }

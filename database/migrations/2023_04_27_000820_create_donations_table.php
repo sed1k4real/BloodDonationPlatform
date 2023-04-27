@@ -17,13 +17,19 @@ class CreateDonationsTable extends Migration
             $table->id('don_ref');
             $table->date('don_date');
             $table->integer('room_ref');
-            $table->integer('donor_ref');
+            $table->unsignedBigInteger('donor_ref');
             $table->integer('don_qty');
             $table->integer('type');
             $table->integer('skd_ref');
             $table->integer('camp_ref');
-            $table->integer('user_ref');
+            $table->unsignedBigInteger('user_ref');
             $table->timestamps();
+            
+            $table->foreign('donor_ref')->references('id')->on('donors')->onDelete('cascade');
+            $table->foreign('skd_ref')->references('skd_num')->on('schedules')->onDelete('cascade');
+            $table->foreign('room_ref')->references('room_num')->on('rooms')->onDelete('cascade');
+            $table->foreign('camp_ref')->references('id')->on('campaigns')->onDelete('cascade');
+            $table->foreign('user_ref')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

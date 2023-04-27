@@ -10,5 +10,10 @@ class Room extends Model
     protected $fillable = [
         'room_num',
         'room_name'];
+
+    public function donation()
+    {
+        return $this->hasMany(Donation::class);
+    }
     use HasFactory;
 }

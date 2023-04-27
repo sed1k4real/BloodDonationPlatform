@@ -16,5 +16,15 @@ class Donor extends Model
         'gender',
         'chro_dis',
         'blood_type'];
+
+    public function donation()
+    {
+        return $this->hasMany(Donation::class);
+    }
+
+    public function bloodCategory()
+    {
+        return $this->belongsTo(BloodCategory::class);
+    }
     use HasFactory;
 }

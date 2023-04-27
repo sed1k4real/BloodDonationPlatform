@@ -11,5 +11,10 @@ class Planing extends Model
         'month',
         'year',
         'status'];
+
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
     use HasFactory;
 }

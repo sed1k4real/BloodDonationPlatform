@@ -15,7 +15,7 @@ class CreateCampaignsTable extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->date('strt_date');
+            $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
         });

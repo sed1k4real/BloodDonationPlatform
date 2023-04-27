@@ -20,6 +20,8 @@ class CreateSchedulesTable extends Migration
             $table->time('time');
             $table->integer('nb');
             $table->timestamps();
+
+            $table->foreign('plan_ref')->references('plan_num')->on('planings')->onDelete('cascade');
         });
     }
 

@@ -14,5 +14,10 @@ class Result extends Model
         'factor3',
         'factor4',
         'factor5'];
+
+    public function donation()
+    {
+        return $this->belongsTo(Donation::class);
+    }
     use HasFactory;
 }

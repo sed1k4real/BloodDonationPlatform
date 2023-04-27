@@ -19,6 +19,8 @@ class CreateAddressesTable extends Migration
             $table->string('address');
             $table->unsignedSmallInteger('bus_num');
             $table->timestamps();
+
+            $table->foreign('camp_ref')->references('id')->on('campaigns')->onDelete('cascade');
         });
     }
 

@@ -14,5 +14,10 @@ class Receiver extends Model
         'address',
         'username',
         'password'];
+
+    public function request()
+    {
+        return $this->hasMany(BloodRequest::class);
+    }
     use HasFactory;
 }

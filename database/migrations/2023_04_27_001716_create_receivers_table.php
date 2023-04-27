@@ -19,7 +19,7 @@ class CreateReceiversTable extends Migration
             $table->string('email')->unique();
             $table->string('tel', 32);
             $table->string('address');
-            $table->string('username', 32);
+            $table->string('username', 32)->unique();
             $table->string('password', 128);
             $table->timestamps();
         });

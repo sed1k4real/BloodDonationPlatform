@@ -22,8 +22,10 @@ class CreateDonorsTable extends Migration
             $table->string('email')->unique();
             $table->string('gender', 8);
             $table->string('chro_dis');
-            $table->string('blood_type', 8);
+            $table->integer('blood_type');
             $table->timestamps();
+
+            $table->foreign('blood_type')->references('ref')->on('blood_categories')->onDelete('cascade');
         });
     }
 

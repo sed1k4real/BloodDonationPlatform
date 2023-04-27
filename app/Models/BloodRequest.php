@@ -14,5 +14,14 @@ class BloodRequest extends Model
         'rqst_qty',
         'status',
         'date_limit'];
+
+    public function receiver()
+    {
+        return $this->belongsTo(Receiver::class);
+    }
+    public function bloodCategory()
+    {
+        return $this->belongsTo(BloodCategory::class);
+    }
     use HasFactory;
 }

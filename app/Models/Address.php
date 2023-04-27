@@ -11,5 +11,10 @@ class Address extends Model
         'camp_ref',
         'address',
         'bus_num'];
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
     use HasFactory;
 }
