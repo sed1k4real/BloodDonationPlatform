@@ -16,12 +16,12 @@ class CreateDonationsTable extends Migration
         Schema::create('donations', function (Blueprint $table) {
             $table->id('don_ref');
             $table->date('don_date');
-            $table->integer('room_ref');
+            $table->unsignedBigInteger('room_ref');
             $table->unsignedBigInteger('donor_ref');
             $table->integer('don_qty');
             $table->integer('type');
-            $table->integer('skd_ref');
-            $table->integer('camp_ref');
+            $table->unsignedBigInteger('skd_ref');
+            $table->unsignedBigInteger('camp_ref');
             $table->unsignedBigInteger('user_ref');
             $table->timestamps();
             

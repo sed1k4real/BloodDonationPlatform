@@ -17,7 +17,7 @@ class CreateBloodRequestsTable extends Migration
             $table->id('rqst_ref');
             $table->date('rqst_date');
             $table->unsignedBigInteger('rec_ref');
-            $table->integer('blood_type');
+            $table->unsignedBigInteger('blood_type');
             $table->integer('rqst_qty');
             $table->string('status');
             $table->date('date_limit')->nullable();
