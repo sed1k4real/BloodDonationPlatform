@@ -53,6 +53,8 @@ Route::middleware(['auth','isDonor'])->group(function() {
 
     Route::get('/settings/donor', 'App\Http\Controllers\DonorController@Settings')->name('donor.settings');
     Route::get('/history/donor', 'App\Http\Controllers\DonorController@History')->name('donor.history');
+
+    
 });
 
 // Reciever

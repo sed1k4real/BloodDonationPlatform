@@ -96,7 +96,7 @@ header, main, nav
 }
 header, main, footer
 {
-    margin-left: 230px;
+    padding-left: min(25vw ,230px) ;
 }
 header
 {
@@ -146,12 +146,28 @@ a:visited
     left: 0;
     bottom: 0;
     background-color: var(--color-light-black);
-    /* height: 100vh; */
     width: 230px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px)
+{
+    .nav
+    {
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: var(--color-light-black);
+        width: min(20vw, 230px);
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
 }
 
 nav a:visited, .material-symbols-outlined
