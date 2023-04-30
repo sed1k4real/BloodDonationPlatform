@@ -9,6 +9,7 @@ class Result extends Model
 {
     protected $fillable = [
         'don_ref',
+        'status',
         'factor1',
         'factor2',
         'factor3',

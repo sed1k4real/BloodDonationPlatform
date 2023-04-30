@@ -10,19 +10,22 @@ class User extends Authenticatable
 {
     protected $fillable = [
         'last_name',
-        'username',
+        'first_name',
+        'birthdate',
+        'gender_ref',
         'role_ref',
+        'tel',
         'email',
         'email_verified_at',
         'password'];
 
-        public function donation()
-        {
-            return $this->hasMany(Donation::class);
-        }
         public function role()
         {
             return $this->belongsTo(Role::class);
+        }
+        public function gender()
+        {
+            return $this->belongsTo(Gender::class);
         }
     use HasFactory;
 }

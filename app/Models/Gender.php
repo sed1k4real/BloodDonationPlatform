@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Receiver extends User
+class Gender extends Model
 {
     protected $fillable = [
-        ];
+        'gender_name'];
 
-    public function request()
-    {
-        return $this->hasMany(BloodRequest::class);
-    }
     use HasFactory;
 }

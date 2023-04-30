@@ -11,11 +11,9 @@ class Donation extends Model
         'don_date',
         'room_ref',
         'donor_ref',
-        'don_qty',
-        'type',
+        'admin_ref',
         'skd_ref',
-        'camp_ref',
-        'user_ref'];
+        'don_qty'];
 
     public function donor()
     {
@@ -29,11 +27,7 @@ class Donation extends Model
     {
         return $this->belongsTo(Room::class);
     }
-    public function campaign()
-    {
-        return $this->belongsTo(Campaign::class);
-    }
-    public function user()
+    public function admin()
     {
         return $this->belongsTo(User::class);
     }

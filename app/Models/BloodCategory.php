@@ -10,14 +10,15 @@ class BloodCategory extends Model
     protected $fillable = [
         'ref',
         'catg',
-        'symbol'];
+        'symbol',
+        'qty'];
 
     public function donor()
     {
         return $this->hasMany(Donor::class);
     }
 
-    public function bloodRequest()
+    public function request()
     {
         return $this->hasMany(BloodRequest::class);
     }

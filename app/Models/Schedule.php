@@ -11,7 +11,7 @@ class Schedule extends Model
         'plan_ref',
         'date',
         'time',
-        'nb'];
+        'dons_num'];
 
     public function planing()
     {

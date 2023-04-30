@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Campaign extends Model
+class Admin extends User
 {
-    protected $fillable = [
-        'strt_date',
-        'end_date'];
-    
+    use HasFactory;
     public function donation()
     {
         return $this->hasMany(Donation::class);
     }
-    public function address()
+    public function request()
     {
-        return $this->hasMany(Address::class);
+        return $this->hasMany(Request::class);
     }
-    use HasFactory;
 }

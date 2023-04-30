@@ -18,7 +18,7 @@ class CreateSchedulesTable extends Migration
             $table->unsignedBigInteger('plan_ref');
             $table->date('date');
             $table->time('time');
-            $table->integer('nb');
+            $table->integer('dons_num');
             $table->timestamps();
 
             $table->foreign('plan_ref')->references('plan_num')->on('planings')->onDelete('cascade');
