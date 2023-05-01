@@ -15,9 +15,15 @@ class CreateDonorsTable extends Migration
     {
         Schema::create('donors', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_ref');
             $table->unsignedBigInteger('blood_type');
             $table->string('chro_dis')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_ref')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
 
             $table->foreign('blood_type')
             ->references('ref')

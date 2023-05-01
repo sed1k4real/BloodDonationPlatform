@@ -8,31 +8,32 @@
         <h1>Registration</h1>
         <form class="signup-form" action="{{route('register-user')}}" method="post">
             @csrf
-            <div><label for="first_name">First name</label><br><input class="signup-form-input" type="text" name="first_name" value="{{old('first_name')}}" required></div>
-            <div><label for="last_name">Last name</label><br><input class="signup-form-input" type="text" name="last_name" value="{{old('last_name')}}"required></div>
-            <div><label for="">Phone number</label><br><input class="signup-form-input" type="tel" name="phone_number" required></div>
-            <div><label for="">Birthday</label><br><input class="signup-form-input" type="date" name="birthday" required></div>
+            <div><label for="last_name">Last name</label><br><input class="signup-form-input" type="text" name="last_name" value="{{old('last_name')}}" required></div>
+            <div><label for="first_name">First name</label><br><input class="signup-form-input" type="text" name="first_name" value="{{old('first_name')}}"required></div>
+            <div><label for="tel">Phone number</label><br><input class="signup-form-input" type="tel" name="tel"  value="{{old('tel')}}" required></div>
+            <div><label for="birthdate">Birthdate</label><br><input class="signup-form-input" type="date" name="birthdate" required></div>
             
                 <div>
-                <label for="">Blood type</label><br><select class="signup-form-select-01" name="blood_type" id="bloodtype" required>
-                    <option value="A+">A+</option>
-                    <option value="B+">B+</option>
-                    <option value="AB+">AB+</option>
-                    <option value="O+">O+</option>
-                    <option value="A-">A-</option>
-                    <option value="B-">B-</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O-">O-</option>
+                <label for="">Blood type</label><br><select class="signup-form-select-01" name="blood_type" id="blood_type" required>
+                    <option value="1">A+</option>
+                    <option value="2">B+</option>
+                    <option value="3">AB+</option>
+                    <option value="4">O+</option>
+                    <option value="5">A-</option>
+                    <option value="6">B-</option>
+                    <option value="7">AB-</option>
+                    <option value="8">O-</option>
                 </select>
                 </div>
-            <div class="signup-form-radio" ><label for="gender">Gender</label><br>
-                <fieldset id="gender" name="gender">
-                    <input type="radio" value="male" name="gender">Male</input>
-                    <input type="radio" value="female" name="gender">Female</input>
+            <div class="signup-form-radio" ><label for="gender_ref">Gender</label><br>
+                <fieldset id="gender_ref" name="gender_ref">
+                    <input type="radio" value="1" name="gender_ref">Male</input>
+                    <input type="radio" value="2" name="gender_ref">Female</input>
                 </fieldset>
             </div>
+            <!-- Chronic disease will be added later -->
             <div>
-                <label for="">Role</label><br><select class="signup-form-select-02" name="role" id="role" required>
+                <label for="">Role</label><br><select class="signup-form-select-02" name="role_ref" id="role_ref" required>
                 <option value="2">Donor</option>
                 <option value="3">Receiver</option>
             </select></div>

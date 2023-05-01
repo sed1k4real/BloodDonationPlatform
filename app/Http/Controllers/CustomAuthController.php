@@ -12,7 +12,7 @@ class CustomAuthController extends Controller
     {
         $request->validate([
             'email'=>'bail|required|email',
-            'password'=>'bail|required|min:6|max:32'
+            'password'=>'bail|required|min:4|max:32'
         ]);
 
         $credentials = $request->only('email', 'password');
@@ -23,7 +23,7 @@ class CustomAuthController extends Controller
         }
 
         $user = User::where('id', "=", Auth::id())->first();
-        $role = Auth::user()->role;
+        $role = Auth::user()->role_ref;
 
         $request->session()->put('id', $user->id);
 

@@ -15,14 +15,14 @@ use App\Http\Controllers\GuestController;
 |
 */
 // Guest
-Route::middleware('Guest')->group(function() {
+Route::middleware('isGuest')->group(function() {
     Route::get('/', 'App\Http\Controllers\GuestController@Home')->name('home');
     Route::get('/about', 'App\Http\Controllers\GuestController@AboutUs')->name('about');
-    Route::get('/sign_up', 'App\Http\Controllers\GuestController@Signup')->name('signup');
+    Route::get('/register', 'App\Http\Controllers\GuestController@Signup')->name('signup');
     Route::get('/login', 'App\Http\Controllers\GuestController@Login')->name('login');
 
-    Route::post('/register_user', 'App\Http\Controllers\GuestController@RegisterUser')->name('register-user');
-    Route::post('/login_user', 'App\Http\Controllers\CustomAuthController@LoginUser')->name('login-user');
+    Route::post('/register', 'App\Http\Controllers\GuestController@RegisterUser')->name('register-user');
+    Route::post('/login', 'App\Http\Controllers\CustomAuthController@LoginUser')->name('login-user');
 });
 
 // Admin

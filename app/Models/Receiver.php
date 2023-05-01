@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Receiver extends User
 {
     protected $fillable = [
+        'user_ref'
         ];
 
     public function request()

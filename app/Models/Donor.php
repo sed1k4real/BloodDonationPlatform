@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Donor extends User
 {
     protected $fillable = [
+        'user_ref',
         'chro_dis',
         'blood_type'];
 

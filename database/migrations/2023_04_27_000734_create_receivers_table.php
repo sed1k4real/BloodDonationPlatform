@@ -15,6 +15,7 @@ class CreateReceiversTable extends Migration
     {
         Schema::create('receivers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_ref');
             $table->timestamps();
         });
     }

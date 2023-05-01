@@ -17,7 +17,7 @@ class RecieverMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role == '3')
+        if(Auth::user()->role_ref == '3')
         {
             return $next($request);
         }

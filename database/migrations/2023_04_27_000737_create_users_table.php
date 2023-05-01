@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->date('birthdate');
             $table->unsignedBigInteger('gender_ref');
             $table->unsignedBigInteger('role_ref');
-            $table->integer('tel');
+            $table->string('tel');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 128);
