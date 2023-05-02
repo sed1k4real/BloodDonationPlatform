@@ -16,8 +16,8 @@ class CreateSchedulesTable extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id('skd_num');
             $table->unsignedBigInteger('plan_ref');
-            $table->date('date');
-            $table->time('time');
+            $table->unsignedMediumInteger('date');
+            // $table->unsignedMediumInteger('time');
             $table->integer('dons_num');
             $table->timestamps();
 

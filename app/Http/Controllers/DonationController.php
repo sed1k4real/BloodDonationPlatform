@@ -11,23 +11,21 @@ class DonationController extends Controller
     public function DonationBooking(Request $request)
     {
         $request->validate([
-            'date'=>'bail|required|date',
-            'time'=>'bail|required',
+            'don_date'=>'bail|required|date',
         ]);
 
         $data = $request->all();
 
         $job = Donation::create([
             'don_date'=>$data['date'],
-            'room_ref',
+            'room_ref' => 2,
             'donor_ref'=>$request->session()->get('id'),
             'admin_ref',
-            'time'=>$data['time'],
-            'status'
+            'skd_ref'
         ]);
 
         // Result message
-        if(!$job['id'])
+        if(!$job)
         {
             return back()->with('failMessage', 'Oops! Something went wrong');
         }else

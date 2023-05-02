@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends User
 {
+    protected $fillable = [
+        'user_ref'
+    ];
     use HasFactory;
     public function donation()
     {

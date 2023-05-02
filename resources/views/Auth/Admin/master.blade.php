@@ -20,7 +20,7 @@
                 <img class="nav-profilePic" src="../../pfp.png" alt="Profile picture"/>
                 <p class="nav-username">{{ Auth::user()->last_name }}</p>
                 <p class="nav-username">{{ Auth::user()->first_name }}</p>
-                <p class="nav-role">@switch( Auth::user()->role )
+                <p class="nav-role">@switch( Auth::user()->role_ref )
                         @case('0')
                             Super admin
                         @break

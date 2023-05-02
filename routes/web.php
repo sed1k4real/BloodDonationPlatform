@@ -34,9 +34,9 @@ Route::middleware(['auth','isAdmin'])->group(function() {
     Route::get('/requests/booked', 'App\Http\Controllers\JobsController@BookedJobs')->name('jobs.booked');
     Route::get('/requests/denied', 'App\Http\Controllers\JobsController@DeniedJobs')->name('jobs.denied');
     Route::get('/requests/done', 'App\Http\Controllers\JobsController@DoneJobs')->name('jobs.done');
-    
+
     Route::get('/history', 'App\Http\Controllers\JobsController@Jobslog')->name('admin.history');
-    
+
     Route::get('/settings', 'App\Http\Controllers\AdminController@Settings')->name('settings');
     Route::post('/settings/update', 'App\Http\Controllers\AdminController@Update')->name('admin.update');
 
@@ -49,12 +49,12 @@ Route::middleware(['auth','isAdmin'])->group(function() {
 // Donor
 Route::middleware(['auth','isDonor'])->group(function() {
     Route::get('/booking', 'App\Http\Controllers\DonorController@Booking')->name('donor.booking');
-    Route::post('/booking', 'App\Http\Controllers\JobsController@BookAppointment')->name('bookingApp');
+    Route::post('/booking', 'App\Http\Controllers\DonationController@DonationBooking')->name('bookingApp');
 
     Route::get('/settings/donor', 'App\Http\Controllers\DonorController@Settings')->name('donor.settings');
     Route::get('/history/donor', 'App\Http\Controllers\DonorController@History')->name('donor.history');
 
-    
+
 });
 
 // Reciever

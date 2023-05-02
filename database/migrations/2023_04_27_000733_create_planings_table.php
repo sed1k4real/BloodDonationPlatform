@@ -15,8 +15,8 @@ class CreatePlaningsTable extends Migration
     {
         Schema::create('planings', function (Blueprint $table) {
             $table->id('plan_num');
-            $table->unsignedTinyInteger('month')->index();
-            $table->unsignedSmallInteger('year')->index();
+            $table->unsignedInteger('month');
+            $table->unsignedInteger('year');
             $table->string('status');
             $table->timestamps();
         });

@@ -16,11 +16,11 @@ class CreateDonationsTable extends Migration
         Schema::create('donations', function (Blueprint $table) {
             $table->id('don_ref');
             $table->date('don_date');
-            $table->unsignedBigInteger('room_ref');
+            $table->unsignedBigInteger('room_ref')->nullable();
             $table->unsignedBigInteger('donor_ref');
-            $table->unsignedBigInteger('admin_ref');
+            $table->unsignedBigInteger('admin_ref')->nullable();
             $table->unsignedBigInteger('skd_ref');
-            $table->integer('don_qty');
+            $table->integer('don_qty')->nullable();
             $table->timestamps();
 
             $table->foreign('donor_ref')->references('id')->on('donors')->onDelete('cascade');
