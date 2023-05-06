@@ -14,7 +14,7 @@ class CreateGendersTable extends Migration
     public function up()
     {
         Schema::create('genders', function (Blueprint $table) {
-            $table->id('gender_num');
+            $table->id();
             $table->string('gender_name', 8);
             $table->timestamps();
         });

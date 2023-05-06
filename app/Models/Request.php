@@ -10,8 +10,8 @@ class Request extends Model
     protected $fillable = [
         'date',
         'deadline',
-        'ref_ref',
-        'admin_ref',
+        'receiver_id',
+        'admin_id',
         'blood_type',
         'qty'];
     public function receiver()

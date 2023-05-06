@@ -8,12 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Receiver extends User
 {
     protected $fillable = [
-        'user_ref'
+        'user_id'
         ];
 
-    public function request()
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+        public function request()
     {
         return $this->hasMany(BloodRequest::class);
     }
+
     use HasFactory;
 }

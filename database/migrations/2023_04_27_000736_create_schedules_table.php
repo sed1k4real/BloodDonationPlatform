@@ -14,14 +14,14 @@ class CreateSchedulesTable extends Migration
     public function up()
     {
         Schema::create('schedules', function (Blueprint $table) {
-            $table->id('skd_num');
-            $table->unsignedBigInteger('plan_ref');
+            $table->id();
+            $table->unsignedBigInteger('planing_id');
             $table->unsignedMediumInteger('date');
             // $table->unsignedMediumInteger('time');
             $table->integer('dons_num');
             $table->timestamps();
 
-            $table->foreign('plan_ref')->references('plan_num')->on('planings')->onDelete('cascade');
+            $table->foreign('planing_id')->references('id')->on('planings')->onDelete('cascade');
         });
     }
 

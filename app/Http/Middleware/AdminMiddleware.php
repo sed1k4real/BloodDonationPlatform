@@ -17,7 +17,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role_ref == '1')
+        if(Auth::user()->role_id == '1')
         {
             return $next($request);
         }

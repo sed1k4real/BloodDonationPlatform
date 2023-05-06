@@ -14,19 +14,19 @@ class CreateDonationsTable extends Migration
     public function up()
     {
         Schema::create('donations', function (Blueprint $table) {
-            $table->id('don_ref');
-            $table->date('don_date');
-            $table->unsignedBigInteger('room_ref')->nullable();
-            $table->unsignedBigInteger('donor_ref');
-            $table->unsignedBigInteger('admin_ref')->nullable();
-            $table->unsignedBigInteger('skd_ref');
-            $table->integer('don_qty')->nullable();
+            $table->id();
+            $table->date('donation_date');
+            $table->unsignedBigInteger('room_id')->nullable();
+            $table->unsignedBigInteger('donor_id');
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->unsignedBigInteger('schedule_id');
+            $table->integer('donation_qty')->nullable();
             $table->timestamps();
 
-            $table->foreign('donor_ref')->references('id')->on('donors')->onDelete('cascade');
-            $table->foreign('skd_ref')->references('skd_num')->on('schedules')->onDelete('cascade');
-            $table->foreign('room_ref')->references('room_num')->on('rooms')->onDelete('cascade');
-            $table->foreign('admin_ref')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->foreign('donor_id')->references('id')->on('donors')->onDelete('cascade');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
         });
     }
 

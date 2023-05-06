@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     protected $fillable = [
-        'room_num',
         'room_name'];
 
     public function donation()

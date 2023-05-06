@@ -12,8 +12,8 @@ class User extends Authenticatable
         'last_name',
         'first_name',
         'birthdate',
-        'gender_ref',
-        'role_ref',
+        'gender_id',
+        'role_id',
         'tel',
         'email',
         'email_verified_at',
@@ -27,5 +27,17 @@ class User extends Authenticatable
         {
             return $this->belongsTo(Gender::class);
         }
-    use HasFactory;
+        public function donor()
+        {
+            return $this->hasMany(Donor::class);
+        }
+        public function admin()
+        {
+            return $this->hasMany(Admin::class);
+        }
+        public function receiver()
+        {
+            return $this->hasMany(Receiver::class);
+        }
+        use HasFactory;
 }

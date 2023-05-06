@@ -17,15 +17,15 @@ class CreateRequestsTable extends Migration
             $table->id();
             $table->date('date');
             $table->date('deadline');
-            $table->unsignedBigInteger('rec_ref');
-            $table->unsignedBigInteger('admin_ref');
+            $table->unsignedBigInteger('receiver_id');
+            $table->unsignedBigInteger('admin_id');
             $table->unsignedBigInteger('blood_type');
             $table->integer('qty')->nullable();
             $table->timestamps();
 
             $table->foreign('blood_type')->references('ref')->on('blood_categories')->onDelete('cascade');
-            $table->foreign('rec_ref')->references('id')->on('receivers')->onDelete('cascade');
-            $table->foreign('admin_ref')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('receiver_id')->references('id')->on('receivers')->onDelete('cascade');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
 
         });
     }

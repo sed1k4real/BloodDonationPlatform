@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Donor extends User
 {
     protected $fillable = [
-        'user_ref',
+        'user_id',
         'chro_dis',
         'blood_type'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function donation()
     {
         return $this->hasMany(Donation::class);

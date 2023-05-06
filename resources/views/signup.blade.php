@@ -25,15 +25,15 @@
                     <option value="8">O-</option>
                 </select>
                 </div>
-            <div class="signup-form-radio" ><label for="gender_ref">Gender</label><br>
-                <fieldset id="gender_ref" name="gender_ref">
-                    <input type="radio" value="1" name="gender_ref">Male</input>
-                    <input type="radio" value="2" name="gender_ref">Female</input>
+            <div class="signup-form-radio" ><label for="gender_id">Gender</label><br>
+                <fieldset id="gender_id" name="gender_id">
+                    <input type="radio" value="1" name="gender_id">Male</input>
+                    <input type="radio" value="2" name="gender_id">Female</input>
                 </fieldset>
             </div>
             <!-- Chronic disease will be added later -->
             <div>
-                <label for="">Role</label><br><select class="signup-form-select-02" name="role_ref" id="role_ref" required>
+                <label for="">Role</label><br><select class="signup-form-select-02" name="role_id" id="role_id" required>
                 <option value="2">Donor</option>
                 <option value="3">Receiver</option>
             </select></div>

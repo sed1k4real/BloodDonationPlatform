@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
+use App\Models\Donation;
+use App\Models\Result;
 use Illuminate\Http\Request;
+use App\Models\Donor;
+use Illuminate\Support\Facades\Auth;
 
 
 class DonorController extends Controller
@@ -15,9 +18,11 @@ class DonorController extends Controller
 
     public function History(Request $request)
     {
-        $id = $request->session()->get('id'); 
-        $jobs = Job::where('user_id', $id)->orderBy('updated_at','desc')->paginate(5);
-        return view('Auth/Donor/history', compact('jobs'));
+        $id = $request->session()->get('id');
+        $donor = Donor::where('user_id', $id)->firstOrFail();
+        $donations = $donor->donation()->with('result')->get();
+
+        return view('Auth/Donor/history', compact('donations'));
     }
 
     public function Settings()

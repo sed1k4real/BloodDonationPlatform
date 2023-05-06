@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Donation extends Model
 {
     protected $fillable = [
-        'don_date',
-        'room_ref',
-        'donor_ref',
-        'admin_ref',
-        'skd_ref',
-        'don_qty'];
+        'donation_date',
+        'room_id',
+        'donor_id',
+        'admin_id',
+        'schedule_id',
+        'donation_qty'];
 
     public function donor()
     {
@@ -33,7 +33,8 @@ class Donation extends Model
     }
     public function result()
     {
-        return $this->hasMany(Result::class);
+        return $this->hasOne(Result::class);
     }
+    
     use HasFactory;
 }

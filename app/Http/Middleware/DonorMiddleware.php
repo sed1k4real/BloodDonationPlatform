@@ -17,7 +17,7 @@ class DonorMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->role_ref == '2')
+        if(Auth::user()->role_id == '2')
         {
             return $next($request);
         }

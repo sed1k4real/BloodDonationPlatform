@@ -12,7 +12,7 @@
 <body>
     <nav>
         <ul>
-            <li><a href="{{ route('donor.booking') }}">Booking</a></li>
+            <li><a href="{{ route('donor-booking') }}">Booking</a></li>
             <li><a href="{{ route('donor.history') }}">History</a></li>
             <li><a href="{{ route('donor.settings') }}">Settings</a></li>
             <li><a href="{{ route('logout') }}">Logout</a></li>

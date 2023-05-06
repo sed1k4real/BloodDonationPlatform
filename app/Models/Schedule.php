@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Schedule extends Model
 {
     protected $fillable = [
-        'plan_ref',
+        'planing_id',
         'date',
         'time',
         'dons_num'];

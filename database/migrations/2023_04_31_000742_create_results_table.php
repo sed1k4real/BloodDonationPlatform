@@ -15,7 +15,7 @@ class CreateResultsTable extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('don_ref');
+            $table->unsignedBigInteger('donation_id');
             $table->string('status');
             $table->string('factor1')->nullable();
             $table->string('factor2')->nullable();
@@ -24,7 +24,7 @@ class CreateResultsTable extends Migration
             $table->string('factor5')->nullable();
             $table->timestamps();
 
-            $table->foreign('don_ref')->references('don_ref')->on('donations')->onDelete('cascade');
+            $table->foreign('donation_id')->references('id')->on('donations')->onDelete('cascade');
         });
     }
 

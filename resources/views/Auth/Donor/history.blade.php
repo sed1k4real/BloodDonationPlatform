@@ -5,13 +5,12 @@
 @section('main')
 <div>
     <p>{{ Auth::user()->first_name}}</p>
-    @foreach($jobs as $job)
+    @foreach($donations as $donation)
     <div>
-        <p>{{ $job->id }}</p>
-        <p>Appointment at {{ $job->date }}</p>
-        <p>{{ $job->status }}</p>
+        <p>{{ $donation->id }}</p>
+        <p>Appointment at {{ $donation->donation_date }}</p>
+        <p>{{ $donation->result->status ?? 'N/A'}}</p>
     </div>
     @endforeach
 </div>
-{{ $jobs->links() }}
 @endsection('main')

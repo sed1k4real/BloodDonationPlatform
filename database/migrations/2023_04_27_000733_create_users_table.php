@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('last_name', 128);
             $table->string('first_name', 128);
             $table->date('birthdate');
-            $table->unsignedBigInteger('gender_ref');
-            $table->unsignedBigInteger('role_ref');
+            $table->unsignedBigInteger('gender_id');
+            $table->unsignedBigInteger('role_id');
             $table->string('tel');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -28,8 +28,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('role_ref') ->references('role_num')->on('roles')->onDelete('cascade');
-            $table->foreign('gender_ref') ->references('gender_num')->on('genders')->onDelete('cascade');
+            $table->foreign('gender_id') ->references('id')->on('genders')->onDelete('cascade');
+            $table->foreign('role_id') ->references('id')->on('roles')->onDelete('cascade');
         });
 
     }

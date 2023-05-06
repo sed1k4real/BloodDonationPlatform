@@ -45,10 +45,10 @@
                         <div class="nav-requests {{ Request::is('requests/pending') || Request::is('requests/booked') || Request::is('requests/denied') || Request::is('requests/done') ? 'active':'' }}"><span class="material-symbols-outlined">Task</span>
                         <a href="#">Requests</a></div>
                         <ul class="dropdown-menu">
-                            <li><a class="{{ Request::is('requests/pending') ? 'active':'' }}" href=" {{ route('jobs.pending') }} ">Pending</a></li>
-                            <li><a class="{{ Request::is('requests/booked') ? 'active':'' }}" href=" {{ route('jobs.booked') }} ">Booked</a></li>
-                            <li><a class="{{ Request::is('requests/denied') ? 'active':'' }}" href=" {{ route('jobs.denied') }} ">Denied</a></li>
-                            <li><a class="{{ Request::is('requests/done') ? 'active':'' }}" href=" {{ route('jobs.done') }} ">Done</a></li>
+                            <li><a class="{{ Request::is('requests/pending') ? 'active':'' }}" href=" {{ route('donation.pending') }} ">Pending</a></li>
+                            <li><a class="{{ Request::is('requests/booked') ? 'active':'' }}" href=" {{ route('donation.booked') }} ">Booked</a></li>
+                            <li><a class="{{ Request::is('requests/denied') ? 'active':'' }}" href=" {{ route('donation.denied') }} ">Denied</a></li>
+                            <li><a class="{{ Request::is('requests/done') ? 'active':'' }}" href=" {{ route('donation.done') }} ">Done</a></li>
                         </ul>
                     </li>
                     <li class="{{ Request::is('history') ? 'active':'' }}"><span class="material-symbols-outlined">history</span><a href="{{ route('admin.history') }}">History</a></li>

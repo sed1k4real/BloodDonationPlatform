@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Result extends Model
 {
     protected $fillable = [
-        'don_ref',
+        'donation_id',
         'status',
         'factor1',
         'factor2',
@@ -18,7 +18,7 @@ class Result extends Model
 
     public function donation()
     {
-        return $this->belongsTo(Donation::class);
+        return $this->hasOne(Donation::class);
     }
     use HasFactory;
 }

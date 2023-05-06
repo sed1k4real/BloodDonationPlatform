@@ -7,10 +7,12 @@
 @if(Session::has('successMessage'))
     <p>{{Session::get('successMessage')}}</p>
 @endif
-<form action="{{route('bookingApp')}}" method="post">
+@if(Session::has('failMessage'))
+    <p>{{Session::get('failMessage')}}</p>
+@endif
+<form method="POST" action="{{ route('donation-booking') }}">
     @csrf
-    <div><label for="date">Date</label><input type="date" name="date"></div>
-    <div><label for="time">Time</label><input type="time" name="time"></div>
+    <div><label for="donation_date">Date</label><input type="date" name="donation_date"></div>
     <button type="submit">Book</button>
 </form>
 @endsection('main')

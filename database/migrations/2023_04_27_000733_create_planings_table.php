@@ -14,7 +14,7 @@ class CreatePlaningsTable extends Migration
     public function up()
     {
         Schema::create('planings', function (Blueprint $table) {
-            $table->id('plan_num');
+            $table->id();
             $table->unsignedInteger('month');
             $table->unsignedInteger('year');
             $table->string('status');

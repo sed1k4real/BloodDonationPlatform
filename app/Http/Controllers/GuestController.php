@@ -38,8 +38,8 @@ class GuestController extends Controller
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'birthdate' => 'required|date',
-            'gender_ref' => 'required|in:1,2',
-            'role_ref' => 'required|in:2,3',
+            'gender_id' => 'required|in:1,2',
+            'role_id' => 'required|in:2,3',
             'tel' => 'required',
             'chro_dis' => 'nullable|string',
             'blood_type' => 'required|exists:blood_categories,ref',
@@ -52,17 +52,16 @@ class GuestController extends Controller
             'last_name' => $data['last_name'],
             'first_name' => $data['first_name'],
             'birthdate' => $data['birthdate'],
-            'gender_ref' => $data['gender_ref'],
-            'role_ref' => $data['role_ref'],
+            'gender_id' => $data['gender_id'],
+            'role_id' => $data['role_id'],
             'tel' => $data['tel'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        switch( $user->role_ref ){
+        switch( $user->role_id ){
             case '2':
                 $donor = Donor::create([
-                'user_ref'=> $user->id,
-                // 'chro_dis' => $data['chro_dis'],
+                'user_id'=> $user->id,
                 'blood_type' => $data['blood_type']
                 ]);
 
@@ -75,7 +74,7 @@ class GuestController extends Controller
             break;
             case '3':
                 $receiver = Receiver::create([
-                    'user_ref'=> $user->id
+                    'user_id'=> $user->id
                 ]);
 
                 // Result message
