@@ -19,8 +19,9 @@ class DonorController extends Controller
     public function History(Request $request)
     {
         $id = $request->session()->get('id');
-        $donor = Donor::where('user_id', $id)->firstOrFail();
-        $donations = $donor->donation()->with('result')->get();
+        // $donor = Donor::where('user_id', $id)->firstOrFail();
+        // $donations = $donor->donation()->with('result')->get();
+        $donations = Donation::with('result')->where('donor_id', $id)->get();
 
         return view('Auth/Donor/history', compact('donations'));
     }

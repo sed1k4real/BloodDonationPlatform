@@ -21,12 +21,12 @@ class CustomAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (!Auth::attempt($credentials))
-        { 
-            return back()->with('credentialError', 'Login details are not valid');        
+        {
+            return back()->with('credentialError', 'Login details are not valid');
         }
 
         $role = Auth::user()->role_id;
-        
+
         switch( $role ){
             case '1':
                 $admin = Admin::where('user_id', "=", Auth::id())->first();
@@ -34,7 +34,7 @@ class CustomAuthController extends Controller
                 $request->session()->put('id', $id);
                 return redirect()->route('dashboard');
             break;
-                
+
             case '2':
                 $donor = Donor::where('user_id', "=", Auth::id())->first();
                 $id = $donor->id;
@@ -49,8 +49,7 @@ class CustomAuthController extends Controller
                 return redirect()->route('reciever.Dashboard');
             break;
         }
-    } 
-
+    }
     public function Logout()
     {
         if(Auth::check())

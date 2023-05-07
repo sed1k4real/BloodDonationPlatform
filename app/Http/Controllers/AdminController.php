@@ -31,7 +31,7 @@ class AdminController extends Controller
 
     //
     private function getJobs()
-    {  
+    {
         return Job::with('user')->orderBy('created_at', 'desc')->get();
     }
 
@@ -52,7 +52,7 @@ class AdminController extends Controller
         $jobs = $this->getJobs();
         return view('Auth/Admin/requests', compact('jobs'));
     }
-    
+
     public function Settings()
     {
         return view('Auth/Admin/settings');
@@ -61,7 +61,7 @@ class AdminController extends Controller
     public function Update(Request $request)
     {
         $user = User::where('id', $request->session()->get('id'))->first();
-        
+
         $rules = [
             'first_name' => 'required',
             'last_name' => 'required',
@@ -72,7 +72,7 @@ class AdminController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:6|max:32|confirmed'
         ];
-        
+
         if ($user->first_name != $request->first_name) {
             $rules['first_name'] = 'required';
         }
@@ -109,7 +109,7 @@ class AdminController extends Controller
         if (!$user->wasChanged()) {
             return view('Auth/Admin/settings')->with('failMessage', 'Oops something went wrong!');
         }
-        
+
         return redirect()->back()->with('successMessage', 'Updated successfully');
     }
 }

@@ -34,13 +34,13 @@ Route::middleware(['auth','isAdmin'])->group(function() {
 
     Route::get('/requests/pending', 'App\Http\Controllers\DonationController@PendingDonation')->name('donation.pending');
     Route::get('/requests/booked', 'App\Http\Controllers\DonationController@BookedDonation')->name('donation.booked');
-    Route::get('/requests/denied', 'App\Http\Controllers\DonationController@PendingDonation')->name('donation.denied');
+    Route::get('/requests/denied', 'App\Http\Controllers\DonationController@DeniedDonation')->name('donation.denied');
     Route::get('/requests/done', 'App\Http\Controllers\DonationController@PendingDonation')->name('donation.done');
 
     Route::get('/history', 'App\Http\Controllers\DonationController@DonationLog')->name('admin.history');
 
     Route::get('/settings', 'App\Http\Controllers\AdminController@Settings')->name('settings');
-    Route::post('/settings/update', 'App\Http\Controllers\AdminController@Update')->name('admin.update');
+    Route::post('/settings/update', 'App\Http\Controllers\UserController@UserUpdate')->name('admin.update');
 
     Route::get('/requests/filter', 'App\Http\Controllers\JobsController@FilterJobs')->name('jobs.filter');
 

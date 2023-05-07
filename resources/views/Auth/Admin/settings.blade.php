@@ -9,27 +9,15 @@
         <h2>Account settings</h2>
         <form class="settings-form" action="{{route('admin.update')}}" method="post" id="settings-form">
             @csrf
-            <div><label for="first_name">First name</label><br><input class="settings-form-input" type="text" name="first_name" value="{{  old('first_name', Auth::user()->first_name) }}"></div>
             <div><label for="last_name">Last name</label><br><input class="settings-form-input" type="text" name="last_name" value="{{ old('last_name', Auth::user()->last_name) }}"></div>
-            <div><label for="">Phone number</label><br><input class="settings-form-input" type="tel" name="phone_number" value="{{ old('phone_number', Auth::user()->tel) }}"></div>
-            <div><label for="">Birthday</label><br><input class="settings-form-input" type="date" name="birthday" value="{{ old('birthday', Auth::user()->birthdate) }}"></div>
-            <div>
-                <label for="">Blood type</label><br>
-                <select class="settings-form-select-01" name="blood_type" id="bloodtype" title="bloodType">
-                    <option value="A+" @if(Auth::user()->blood_type == '1') selected @endif > A+ </option>
-                    <option value="B+" @if(Auth::user()->blood_type == '2') selected @endif > B+ </option>
-                    <option value="AB+" @if(Auth::user()->blood_type == '3') selected @endif > AB+ </option>
-                    <option value="O+" @if(Auth::user()->blood_type == '4') selected @endif> O+ </option>
-                    <option value="A-" @if(Auth::user()->blood_type == '5') selected @endif > A- </option>
-                    <option value="B-" @if(Auth::user()->blood_type == '6') selected @endif > B- </option>
-                    <option value="AB-" @if(Auth::user()->blood_type == '7') selected @endif > AB- </option>
-                    <option value="O-" @if(Auth::user()->blood_type == '8') selected @endif> O- </option>
-                </select>
-            </div>
-            <div class="settings-form-radio" ><label for="gender">Gender</label><br>
-                <fieldset id="gender" name="gender">
-                    <input type="radio" value="male" name="gender" @if(Auth::user()->gender_ref == '1') checked @endif>Male</input>
-                    <input type="radio" value="female" name="gender" @if(Auth::user()->gender_ref == '2') checked @endif>Female</input>
+            <div><label for="first_name">First name</label><br><input class="settings-form-input" type="text" name="first_name" value="{{  old('first_name', Auth::user()->first_name) }}"></div>
+            <div><label for="tel">Phone number</label><br><input class="settings-form-input" type="text" name="tel" value="{{ old('tel', Auth::user()->tel) }}"></div>
+            <div><label for="birthdate">Birthday</label><br><input class="settings-form-input" type="date" name="birthdate" value="{{ old('birthdate', Auth::user()->birthdate) }}"></div>
+
+            <div class="settings-form-radio" ><label for="gender_id">Gender</label><br>
+                <fieldset id="gender_id" name="gender_id">
+                    <input type="radio" value="male" name="gender_id" @if(Auth::user()->gender_id == '1') checked @endif>Male</input>
+                    <input type="radio" value="female" name="gender_id" @if(Auth::user()->gender_id == '2') checked @endif>Female</input>
                 </fieldset>
             </div>
             <div><label for="">Email</label><br><input class="settings-form-input" type="email" name="email" value="{{ old('email', Auth::user()->email) }}"></div>

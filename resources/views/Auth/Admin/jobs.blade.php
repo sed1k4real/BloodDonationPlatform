@@ -20,20 +20,16 @@
     </form>
 
     <div class="table">
-        @if($donations == null)
-        <p>No donations found</p>
-        @else
         @foreach($donations as $donation)
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
                 <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
                 <p>{{ $donation->result->status ?? 'N/A' }}</p>
                 <div class="acction">
-                    
+
                 </div>
             </div>
         @endforeach
-        @endif
     </div>
 </main>
 <script>

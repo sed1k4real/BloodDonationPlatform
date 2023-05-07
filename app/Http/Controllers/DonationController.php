@@ -73,19 +73,28 @@ class DonationController extends Controller
 
     public function BookedDonation(Request $request)
     {
-        $BookedDonations = Donation::with('donor.user', 'result')
+        $donations = Donation::with('donor.user', 'result')
                     ->whereHas('result', function ($query) {
                     $query->where('status', 'booked');
                     })->orderBy('created_at', 'desc')->get();
 
-        return view('Auth/Admin/jobs', compact('BookedDonations'));
+        return view('Auth/Admin/jobsBooked', compact('donations'));
     }
 
     public function DeniedDonation(Request $request)
     {
+        $donations = Donation::with('donor.user', 'result')
+                    ->whereHas('result', function ($query) {
+                    $query->where('status', 'denied');
+                    })->orderBy('created_at', 'desc')->get();
+
+        return view('Auth/Admin/jobsDenied', compact('donations'));
+    }
+    public function DoneDonation(Request $request)
+    {
         $searchQuery = $request->query('search');
         $optionQuery = $request->get('optionQuery');
-        $statusQuery = 'booked';
+        $statusQuery = 'done';
 
         $data = $this->FilterJobs($searchQuery, $optionQuery, $statusQuery);
 
