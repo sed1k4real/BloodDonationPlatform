@@ -6,7 +6,7 @@
 <main>
     <div>
         <h2>Account settings</h2>
-        <form action="{{route('admin.update')}}" method="post">
+        <form action="{{route('admin-update')}}" method="post">
             @csrf
             <div><label for="first_name">First name</label><br><input class="settings-form-input" type="text" name="first_name" value="{{  old('first_name', Auth::user()->first_name) }}"></div>
             <div><label for="last_name">Last name</label><br><input class="settings-form-input" type="text" name="last_name" value="{{ old('last_name', Auth::user()->last_name) }}"></div>
@@ -27,10 +27,10 @@
             </div>
             <div class="settings-form-radio" ><label for="gender">Gender</label><br>
                 <fieldset id="gender" name="gender">
-                    <input type="radio" value="male" name="gender" @if(Auth::user()->gender == 'male') checked @endif>Male</input>
-                    <input type="radio" value="female" name="gender" @if(Auth::user()->gender == 'female') checked @endif>Female</input>
+                    <input type="radio" value= 1 name="gender" @if(Auth::user()->gender == 'male') checked @endif>Male</input>
+                    <input type="radio" value= 2 name="gender" @if(Auth::user()->gender == 'female') checked @endif>Female</input>
                 </fieldset>
-            </div>            
+            </div>
             <div><label for="">Email</label><br><input class="settings-form-input" type="email" name="email" value="{{ old('email', Auth::user()->email) }}"></div>
             <div><label for="">Old password</label><br><input class="settings-form-input" type="password" name="password"></div>
             <div><label for="">New Password</label><br><input class="settings-form-input" type="password" minlength="6" maxlength="32"></div>

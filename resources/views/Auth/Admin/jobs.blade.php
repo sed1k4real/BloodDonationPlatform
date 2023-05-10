@@ -5,6 +5,7 @@
 @section('main')
 
 <main>
+    {{ dd($allDonations) }}
     @if(Session::has('successMessage'))
         <p id="message">{{Session::get('successMessage')}}</p>
     @endif
@@ -19,8 +20,21 @@
         <button type="submit">Search</button>
     </form>
 
+    @if(isser($filtredDonation))
     <div class="table">
-        @foreach($donations as $donation)
+        @foreach($filtredDonation as $donation)
+            <div class="table-element">
+                <p>{{ $donation->id }}</p>
+                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
+                <p>{{ $donation->result->status ?? 'N/A' }}</p>
+                <div class="acction">
+
+                </div>
+            </div>
+        @endforeach
+    @else
+    <div class="table">
+        @foreach($allDonation as $donation)
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
                 <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
@@ -31,6 +45,7 @@
             </div>
         @endforeach
     </div>
+    @endif
 </main>
 <script>
     setTimeout(function() {

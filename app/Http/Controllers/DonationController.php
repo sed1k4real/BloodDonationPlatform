@@ -63,12 +63,23 @@ class DonationController extends Controller
 
     public function PendingDonation(Request $request)
     {
-        $donations = Donation::with('donor.user', 'result')
-                    ->whereHas('result', function ($query) {
-                    $query->where('status', 'pending');
-                    })->orderBy('created_at', 'desc')->get();
+        $searchQuery = $request->query('search');
+        $optionQuery = $request->get('optionQuery');
+        $statusQuery = 'pending';
 
-        return view('Auth/Admin/jobs', compact('donations'));
+        $data = $this->FilterDonation($searchQuery, $optionQuery, $statusQuery);
+
+        $allDonations = $data['allDonations'];
+        $filtredDonations = $data['filtredDonations'];
+
+        return view('Auth/Admin/jobs', compact('allDonations', 'filtredDonations'));
+
+        // $donations = Donation::with('donor.user', 'result')
+        //             ->whereHas('result', function ($query) {
+        //             $query->where('status', 'pending');
+        //             })->orderBy('created_at', 'desc')->get();
+
+        // return view('Auth/Admin/jobs', compact('donations'));
     }
 
     public function BookedDonation(Request $request)
@@ -104,25 +115,30 @@ class DonationController extends Controller
         return view('Auth/Admin/jobs', compact('allDonations', 'filtredDonations'));
     }
 
-    private function FilterJobs($searchQuery, $optionQuery, $statusQuery)
+    private function FilterDonation($searchQuery, $optionQuery, $statusQuery)
     {
         $donation = Donation::query();
         $filtredDonation = null;
 
         if($searchQuery && $optionQuery){
             if($optionQuery == 'id' && $searchQuery){
-                $filtredDonation = $donation->with('result')->where('donation.id', 'like',  '%' . $searchQuery . '%')
-                                    ->where('result.status', 'like',  '%' . $statusQuery . '%')
+                $filtredDonation = $donation->with('donor.user', 'result')
+                                    ->whereHas('result', function($query, $statusQuery){
+                                        $query->where('status', 'like', '%' . $statusQuery . '%');
+                                    })
+                                    ->where('id', 'like',  '%' . $searchQuery . '%')
                                     ->orderBy('created_at', 'desc');
             }else{
                 $filtredDonation = $donation->where($optionQuery, 'like', '%' . $searchQuery . '%');
             }
             $filtredDonation = $filtredDonation->get();
         }
-        $allDonation = Donation::with('result')->where('status', 'like',  '%' . $statusQuery . '%')
-                    ->orderBy('created_at', 'desc')
-                    ->get();
+        $allDonation = $donation->with('donor.user', 'result')
+                    ->whereHas('result', function($query, $statusQuery){
+                    $query->where('status', 'like', '%' . $statusQuery . '%');
+                    })->orderBy('created_at', 'desc');
 
+        $allDonation = $allDonation->get();
         return ['allDonation'=> $allDonation, 'filtredDonation' => $filtredDonation];
     }
 

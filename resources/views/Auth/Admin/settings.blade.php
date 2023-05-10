@@ -7,7 +7,7 @@
 <main>
     <div class="settings">
         <h2>Account settings</h2>
-        <form class="settings-form" action="{{route('admin.update')}}" method="post" id="settings-form">
+        <form class="settings-form" action="{{route('admin-update')}}" method="post" id="settings-form">
             @csrf
             <div><label for="last_name">Last name</label><br><input class="settings-form-input" type="text" name="last_name" value="{{ old('last_name', Auth::user()->last_name) }}"></div>
             <div><label for="first_name">First name</label><br><input class="settings-form-input" type="text" name="first_name" value="{{  old('first_name', Auth::user()->first_name) }}"></div>
@@ -16,8 +16,8 @@
 
             <div class="settings-form-radio" ><label for="gender_id">Gender</label><br>
                 <fieldset id="gender_id" name="gender_id">
-                    <input type="radio" value="male" name="gender_id" @if(Auth::user()->gender_id == '1') checked @endif>Male</input>
-                    <input type="radio" value="female" name="gender_id" @if(Auth::user()->gender_id == '2') checked @endif>Female</input>
+                    <input type="radio" value = 1 name="gender_id" @if(Auth::user()->gender_id == '1') checked @endif>Male</input>
+                    <input type="radio" value = 2 name="gender_id" @if(Auth::user()->gender_id == '2') checked @endif>Female</input>
                 </fieldset>
             </div>
             <div><label for="">Email</label><br><input class="settings-form-input" type="email" name="email" value="{{ old('email', Auth::user()->email) }}"></div>

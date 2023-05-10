@@ -40,9 +40,9 @@ Route::middleware(['auth','isAdmin'])->group(function() {
     Route::get('/history', 'App\Http\Controllers\DonationController@DonationLog')->name('admin.history');
 
     Route::get('/settings', 'App\Http\Controllers\AdminController@Settings')->name('settings');
-    Route::post('/settings/update', 'App\Http\Controllers\UserController@UserUpdate')->name('admin.update');
+    Route::post('/settings/update', 'App\Http\Controllers\UserController@UserUpdate')->name('admin-update');
 
-    Route::get('/requests/filter', 'App\Http\Controllers\JobsController@FilterJobs')->name('jobs.filter');
+    Route::get('/requests/filter', 'App\Http\Controllers\DonationController@FilterDonation')->name('donation.filter');
 
     //Requests Route
     Route::post('/requests/{id}', 'App\Http\Controllers\DonationController@DonationUpdate')->name('jobsUpdate');
