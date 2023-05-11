@@ -26,10 +26,8 @@
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
                 <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
-                <p>{{ $donation->result->status ?? 'N/A' }}</p>
-                <div class="acction">
-
-                </div>
+                <p>{{ ucfirst($donation->result->status) ?? 'N/A' }}</p>
+                <a href="#">View report</a>
             </div>
         @endforeach
     @else
@@ -37,10 +35,8 @@
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
                 <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
-                <p>{{ $donation->result->status }}</p>
-                <div class="acction">
-
-                </div>
+                <p>{{ ucfirst($donation->result->status) }}</p>
+                <a href="#">View report</a>
             </div>
             @endforeach
     @endif

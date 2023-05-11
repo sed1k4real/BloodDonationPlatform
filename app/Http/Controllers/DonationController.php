@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donation;
-use App\Models\Donor;
 use Illuminate\Http\Request;
 use App\Models\Result;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
 
 class DonationController extends Controller
 {
@@ -46,19 +43,26 @@ class DonationController extends Controller
 
     public function DonationUpdate(Request $request, $id)
     {
-        $donation = Donation::findOrFail($id);
-        $status = $request->input('status');
+        $donation = Donation::with('result')->findOrFail($id);
+        $statusOption = $request->input('status');
 
-        if ($status === 'booked') {
-            $donation->status = 'booked';
-        } elseif ($status === 'denied') {
-            $donation->status = 'denied';
+        
+        if($statusOption === 'pending'){
+            $donation->result->status = 'pending';
+        }elseif($statusOption === 'denied'){
+            $donation->result->status = 'denied';
+            $donation->result->factor1 = $request->input('reason') ?? Null;
+        }elseif($statusOption === 'accepted'){
+            $donation->result->status = 'booked';
+        }elseif($statusOption === 'done'){
+            $donation->result->status = 'done';
         }
 
+        $donation->result->save();
         $donation->admin_id = $request->session()->get('id');
         $donation->save();
 
-        return redirect()->back()->with('successMessage', 'You have registered successfuly');
+        return redirect()->back()->with('successMessage', 'Updated successfuly');
     }
 
     public function PendingDonation(Request $request)
@@ -146,7 +150,11 @@ class DonationController extends Controller
     public function DonationLog(Request $request)
     {
         $id = $request->session()->get('id');
-        $donationLog = Donation::with('result')->where('admin_id', $id)->orderBy('updated_at', 'desc')->paginate(10);
+        $donationLog = Donation::with('result')
+                    ->where('admin_id', $id)
+                    ->orderBy('updated_at', 'desc')
+                    ->paginate(10);
+
         return view('Auth/Admin/history', compact('donationLog'));
     }
 

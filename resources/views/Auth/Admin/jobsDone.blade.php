@@ -21,14 +21,14 @@
     </form>
 
     <div class="table">
-    @if(isset($filtredJobs))
-            @foreach ($filtredJobs as $job)
+    @if(isset($filtredDonations))
+            @foreach ($filtredDonations as $donation)
             <div class="table-element">
-                <p>{{ $job->id }}</p>
-                <p><span>{{ $job->user->last_name }} {{ $job->user->first_name }}</span> booked an appointment at <span>{{ $job->date }} {{ $job->time }}</span> for <span>{{ $job->user->blood_type }}</span> donation</p>
-                <p>{{ $job->status }}</p>
+                <p>{{ $donation->id }}</p>
+                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->date }}</span> for <span>{{ $donation->donor->blood_type }}</span> donation</p>
+                <p>{{ $donation->result->status }}</p>
                 <div class="acction">
-                    <form method="POST" action="{{ route('jobsUpdate', ['id' => $job->id], 'denied') }}">
+                    <form method="POST" action="{{ route('jobsUpdate', ['id' => $job->id]) }}">
                         @csrf
                         <input type="hidden" name="status" value="denied">
                         <button type="submit" class="deny">Deny</button>
@@ -37,12 +37,17 @@
             </div>
             @endforeach
         @else
-            @foreach ($allJobs as $job)
+            @foreach ($allDonations as $donation)
             <div class="table-element">
-                <p>{{ $job->id }}</p>
-                <p><span>{{ $job->user->last_name }} {{ $job->user->first_name }}</span> booked an appointment at <span>{{ $job->date }} {{ $job->time }}</span> for <span>{{ $job->user->blood_type }}</span> donation</p>
-                <p>{{ $job->status }}</p>
+            <p>{{ $donation->id }}</p>
+                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->date }}</span> for <span>{{ $donation->donor->user->blood_type }}</span> donation</p>
+                <p>{{ $donation->result->status }}</p>
                 <div class="acction">
+                    <form method="POST" action="{{ route('jobsUpdate', ['id' => $job->id]) }}">
+                        @csrf
+                        <input type="hidden" name="status" value="denied">
+                        <button type="submit" class="deny">Deny</button>
+                    </form>
                 </div>
             </div>
             @endforeach

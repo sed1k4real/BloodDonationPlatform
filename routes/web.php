@@ -35,7 +35,7 @@ Route::middleware(['auth','isAdmin'])->group(function() {
     Route::get('/requests/pending', 'App\Http\Controllers\DonationController@PendingDonation')->name('donation.pending');
     Route::get('/requests/booked', 'App\Http\Controllers\DonationController@BookedDonation')->name('donation.booked');
     Route::get('/requests/denied', 'App\Http\Controllers\DonationController@DeniedDonation')->name('donation.denied');
-    Route::get('/requests/done', 'App\Http\Controllers\DonationController@PendingDonation')->name('donation.done');
+    Route::get('/requests/done', 'App\Http\Controllers\DonationController@DoneDonation')->name('donation.done');
 
     Route::get('/history', 'App\Http\Controllers\DonationController@DonationLog')->name('admin.history');
 
@@ -45,7 +45,7 @@ Route::middleware(['auth','isAdmin'])->group(function() {
     Route::get('/requests/filter', 'App\Http\Controllers\DonationController@FilterDonation')->name('donation.filter');
 
     //Requests Route
-    Route::post('/requests/{id}', 'App\Http\Controllers\DonationController@DonationUpdate')->name('jobsUpdate');
+    Route::post('/requests/{id}/', 'App\Http\Controllers\DonationController@DonationUpdate')->name('donation.Update');
 });
 
 // Donor
