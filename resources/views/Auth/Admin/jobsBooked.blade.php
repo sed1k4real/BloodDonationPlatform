@@ -21,11 +21,11 @@
     </form>
 
     <div class="table">
-    @if(isset($filtredDonations))
+    @if(isset($filtredDonations ))
         @foreach($filtredDonations as $donation)
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
-                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
+                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for {{ $donation->donor->bloodCategory->symbol ?? 'N/A' }} donation</p>
                 <p>{{ ucfirst($donation->result->status) ?? 'N/A' }}</p>
                 <div class="acction">
                     <form method="POST" action="{{ route('donation.Update', ['id' => $donation->id ]) }}" onsubmit="return confirmDenial()">
@@ -46,7 +46,7 @@
         @foreach($allDonations as $donation)
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
-                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
+                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for {{ $donation->donor->bloodCategory->symbol ?? 'N/A' }} donation</p>
                 <p>{{ ucfirst($donation->result->status) }}</p>
                 <div class="acction">
                     <form method="POST" action="{{ route('donation.Update', ['id' => $donation->id ]) }}" onsubmit="return confirmDenial()">
@@ -61,15 +61,25 @@
                         <button type="submit" class="accept">Pend</button>
                     </form>
 
-                    <form method="POST" action="{{ route('donation.Update', ['id' => $donation->id ]) }}">
-                        @csrf
-                        <input type="hidden" name="status" value="done">
-                        <button type="submit" class="accept">Done</button>
-                    </form>
+                    <button type="submit" class="accept" id="done-button">Done</button>
+
                 </div>
             </div>
+            <form method="POST" action="{{ route('donation.Update', ['id' => $donation->id ]) }}" id="done-form" style="display: none;">
+                @csrf
+                <input type="hidden" name="status" value="done">
+                <input type="number" name="donation_qty" placeholder="Add donation quantity ">
+                <button type="submit">Submit</button>
+            </form>
         @endforeach
     @endif  
     </div>
 </main>
+<script>
+    $(document).ready(function() {
+        $('#done-button').click(function() {
+        $('#done-form').toggle();
+        });
+    });
+</script>
 @endsection('main')

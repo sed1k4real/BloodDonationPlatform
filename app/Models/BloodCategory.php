@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class BloodCategory extends Model
 {
+    protected $table = 'blood_categories';
+
     protected $fillable = [
-        'ref',
         'catg',
         'symbol',
         'qty'];
@@ -22,5 +23,6 @@ class BloodCategory extends Model
     {
         return $this->hasMany(BloodRequest::class);
     }
+
     use HasFactory;
 }

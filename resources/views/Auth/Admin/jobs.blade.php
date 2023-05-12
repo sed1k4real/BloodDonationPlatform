@@ -27,7 +27,7 @@
         @foreach($filtredDonations as $donation)
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
-                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
+                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for {{ $donation->donor->bloodCategory->symbol ?? 'N/A' }} donation</p>
                 <p>{{ ucfirst($donation->result->status) ?? 'N/A' }}</p>
                 <div class="acction">
                     <form method="POST" action="{{ route('donation.Update', ['id' => $donation->id ]) }}" onsubmit="return confirmDenial()">
@@ -48,7 +48,7 @@
         @foreach($allDonations as $donation)
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
-                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
+                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for {{ $donation->donor->bloodCategory->symbol ?? 'N/A' }} donation</p>
                 <p>{{ ucfirst($donation->result->status) ?? 'N/A' }}</p>
                 <div class="acction">
                     <form method="POST" action="{{ route('donation.Update', ['id' => $donation->id ]) }}" onsubmit="return confirmDenial()">
@@ -65,6 +65,9 @@
                 </div>
             </div>
         @endforeach
+        <div class="pagination">
+            {{ $allDonations->links() }}
+        </div>
     @endif
     </div>
 </main>

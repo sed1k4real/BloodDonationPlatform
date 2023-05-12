@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BloodCategory;
 use App\Models\Donation;
 use Illuminate\Http\Request;
 use App\Models\Result;
+use App\Models\Donor;
 
 class DonationController extends Controller
 {
@@ -44,6 +46,9 @@ class DonationController extends Controller
     public function DonationUpdate(Request $request, $id)
     {
         $donation = Donation::with('result')->findOrFail($id);
+        $donor = Donor::findOrFail($donation->donor_id);
+        $blood_id = $donor->blood_id;
+
         $statusOption = $request->input('status');
 
         
@@ -55,7 +60,19 @@ class DonationController extends Controller
         }elseif($statusOption === 'accepted'){
             $donation->result->status = 'booked';
         }elseif($statusOption === 'done'){
-            $donation->result->status = 'done';
+            $donation->room_id = $request->input('room_id');
+            $donation->donation_qty = $request->input('donation_qty');
+
+            if($donation->save()){
+                $blood = BloodCategory::findOrFail($blood_id);
+                $blood->qty += $donation->donation_qty;
+                $blood->save();
+
+                // Update the donation result status
+                $donation->result->status = 'done';
+                $donation->result->save();
+            }
+
         }
 
         $donation->result->save();
@@ -117,7 +134,7 @@ class DonationController extends Controller
         $allDonations = $data['allDonations'];
         $filtredDonations = $data['filtredDonations'];
 
-        return view('Auth/Admin/jobs', compact('allDonations', 'filtredDonations'));
+        return view('Auth/Admin/jobsDone', compact('allDonations', 'filtredDonations'));
     }
 
     private function FilterDonation($searchQuery, $optionQuery, $statusQuery)
@@ -136,21 +153,23 @@ class DonationController extends Controller
             }else{
                 $filtredDonation = $donation->where($optionQuery, 'like', '%' . $searchQuery . '%');
             }
-            $filtredDonation = $filtredDonation->get();
+            $filtredDonation = $filtredDonation->paginate(10);
         }
         $allDonation = $donation->with('donor.user', 'result')
                     ->whereHas('result', function($query) use ($statusQuery){
                     $query->where('status', 'like', '%' . $statusQuery . '%');
                     })->orderBy('created_at', 'desc');
 
-        $allDonation = $allDonation->get();
+        $allDonation = $allDonation->paginate(10);
         return ['allDonations'=> $allDonation, 'filtredDonations' => $filtredDonation];
     }
 
     public function DonationLog(Request $request)
     {
         $id = $request->session()->get('id');
-        $donationLog = Donation::with('result')
+        $donationLog = Donation::with(['donor.bloodCategory' => function ($query) {
+                        $query->select('id', 'symbol');
+                    }, 'result'])
                     ->where('admin_id', $id)
                     ->orderBy('updated_at', 'desc')
                     ->paginate(10);

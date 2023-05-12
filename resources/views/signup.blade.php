@@ -14,7 +14,7 @@
             <div><label for="birthdate">Birthdate</label><br><input class="signup-form-input" type="date" name="birthdate" required></div>
             
                 <div>
-                <label for="">Blood type</label><br><select class="signup-form-select-01" name="blood_type" id="blood_type" required>
+                <label for="blood_id">Blood type</label><br><select class="signup-form-select-01" name="blood_id" id="blood_id" required>
                     <option value="1">A+</option>
                     <option value="2">B+</option>
                     <option value="3">AB+</option>

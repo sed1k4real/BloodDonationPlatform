@@ -245,6 +245,9 @@ nav img {
 }
 
 .table-history {
+    padding: 0 1rem 0 1rem;
+}
+.table-history-element{
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -388,4 +391,12 @@ nav img {
     min-width: 5rem;
     border-radius: var(--radius-0);
     font-size: 15px;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+.pagination svg{
+    display: none;
 }

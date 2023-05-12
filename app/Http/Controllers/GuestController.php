@@ -42,7 +42,7 @@ class GuestController extends Controller
             'role_id' => 'required|in:2,3',
             'tel' => 'required',
             'chro_dis' => 'nullable|string',
-            'blood_type' => 'required|exists:blood_categories,ref',
+            'blood_id' => 'required|exists:blood_categories,id',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:4'
         ]);
@@ -62,7 +62,7 @@ class GuestController extends Controller
             case '2':
                 $donor = Donor::create([
                 'user_id'=> $user->id,
-                'blood_type' => $data['blood_type']
+                'blood_id' => $data['blood_id']
                 ]);
 
                 if(!$donor)

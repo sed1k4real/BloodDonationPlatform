@@ -19,11 +19,11 @@ class CreateRequestsTable extends Migration
             $table->date('deadline');
             $table->unsignedBigInteger('receiver_id');
             $table->unsignedBigInteger('admin_id');
-            $table->unsignedBigInteger('blood_type');
+            $table->unsignedBigInteger('blood_id');
             $table->integer('qty')->nullable();
             $table->timestamps();
 
-            $table->foreign('blood_type')->references('ref')->on('blood_categories')->onDelete('cascade');
+            $table->foreign('blood_id')->references('id')->on('blood_categories')->onDelete('cascade');
             $table->foreign('receiver_id')->references('id')->on('receivers')->onDelete('cascade');
             $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
 

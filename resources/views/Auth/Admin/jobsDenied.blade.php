@@ -25,18 +25,18 @@
         @foreach($filtredDonations as $donation)
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
-                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
+                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for {{ $donation->donor->bloodCategory->symbol ?? 'N/A' }} donation</p>
                 <p>{{ ucfirst($donation->result->status) ?? 'N/A' }}</p>
-                <a href="#">View report</a>
+                <a href="#">View details</a>
             </div>
         @endforeach
     @else
         @foreach($allDonations as $donation)
             <div class="table-element">
                 <p>{{ $donation->id }}</p>
-                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for donation</p>
+                <p><span>{{ $donation->donor->user->last_name }} {{ $donation->donor->user->first_name }}</span> booked an appointment at <span>{{ $donation->donation_date }}</span> for {{ $donation->donor->bloodCategory->symbol ?? 'N/A' }} donation</p>
                 <p>{{ ucfirst($donation->result->status) }}</p>
-                <a href="#">View report</a>
+                <a href="#">View details</a>
             </div>
             @endforeach
     @endif

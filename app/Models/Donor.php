@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Donor extends User
 {
     protected $fillable = [
         'user_id',
         'chro_dis',
-        'blood_type'];
+        'blood_id'];
 
     public function user()
     {
@@ -23,7 +22,7 @@ class Donor extends User
 
     public function bloodCategory()
     {
-        return $this->belongsTo(BloodCategory::class);
+        return $this->belongsTo(BloodCategory::class, 'blood_id');
     }
     use HasFactory;
 }
