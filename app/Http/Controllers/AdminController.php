@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\BloodCategory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,15 +29,13 @@ class AdminController extends Controller
         ];
     }
 
-    //
-    private function getJobs()
-    {
-        return Job::with('user')->orderBy('created_at', 'desc')->get();
-    }
-
     public function Insights()
     {
-        return view('Auth/Admin/insights');
+        // Blood bank
+        $bloodBank = BloodCategory::get();
+        $total = BloodCategory::sum('qty');
+
+        return view('Auth/Admin/insights', compact('bloodBank', 'total'));
     }
 
     public function Dashboard(Request $request)

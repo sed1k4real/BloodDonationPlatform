@@ -19,7 +19,7 @@
   --bs-white: #fff;
   --bs-gray: #6c757d;
   --bs-gray-dark: #343a40;
-  --bs-primary: #0d6efd;
+  --bs-primary: #FF6767;
   --bs-secondary: #6c757d;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -121,7 +121,7 @@ h6, .h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 abbr[title],
@@ -139,10 +139,10 @@ address {
   line-height: inherit;
 }
 
-ol,
+/* ol,
 ul {
   padding-left: 2rem;
-}
+} */
 
 ol,
 ul,
@@ -203,7 +203,6 @@ sup {
 
 a {
   color: #0d6efd;
-  text-decoration: underline;
 }
 a:hover {
   color: #0a58ca;
@@ -633,6 +632,7 @@ progress {
   --bs-gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   margin-top: calc(var(--bs-gutter-y) * -1);
   margin-right: calc(var(--bs-gutter-x) * -.5);
   margin-left: calc(var(--bs-gutter-x) * -.5);
@@ -3836,7 +3836,7 @@ textarea.form-control-lg {
 .nav {
   display: flex;
   flex-wrap: wrap;
-  padding-left: 0;
+  /* padding-left: 0; */
   margin-bottom: 0;
   list-style: none;
 }
@@ -4759,7 +4759,7 @@ textarea.form-control-lg {
 }
 .progress {
   display: flex;
-  height: 1rem;
+  height: 1.4rem;
   overflow: hidden;
   font-size: 0.75rem;
   background-color: #e9ecef;
@@ -4774,7 +4774,7 @@ textarea.form-control-lg {
   color: #fff;
   text-align: center;
   white-space: nowrap;
-  background-color: #0d6efd;
+  background-color: #FF6767;
   transition: width 0.6s ease;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -7482,6 +7482,10 @@ textarea.form-control-lg {
 
 .rounded-3 {
   border-radius: 0.3rem !important;
+}
+
+.rounded-4 {
+  border-radius: 0.8rem !important;
 }
 
 .rounded-circle {

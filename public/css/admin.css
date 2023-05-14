@@ -87,13 +87,13 @@ body {
 header,
 main,
 nav {
-    padding: 1rem;
+    padding: 1rem 3rem;
 }
 
 header,
 main,
 footer {
-    padding-left: 246px;
+    padding-left: 278px;
 }
 
 header {
@@ -399,4 +399,29 @@ nav img {
 }
 .pagination svg{
     display: none;
+}
+.bank-banner{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    background: linear-gradient(30deg, #eb3f3f 10%, #FF6767);
+    border-radius: var(--radius-1);
+    height: 140px;
+    margin: 0 0 2rem 0;
+    min-width: 650px;
+}
+.bank-banner img{
+    height: 120%;
+    transform: translateY(-0.9rem);
+}
+.bank-banner .material-symbols-outlined{
+    padding: 1rem;
+    scale: 1.5;
+}
+.bank-banner h3, .bank-banner p{
+    color: #fff;
+}
+.bank-banner-bg{
+    padding: 1rem;
 }
