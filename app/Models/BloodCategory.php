@@ -10,18 +10,19 @@ class BloodCategory extends Model
     protected $table = 'blood_categories';
 
     protected $fillable = [
-        'catg',
+        'category',
         'symbol',
-        'qty'];
+        'qty'
+    ];
 
     public function donor()
     {
         return $this->hasMany(Donor::class);
     }
 
-    public function request()
+    public function order()
     {
-        return $this->hasMany(BloodRequest::class);
+        return $this->hasMany(Order::class);
     }
 
     use HasFactory;

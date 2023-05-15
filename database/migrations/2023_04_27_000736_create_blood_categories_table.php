@@ -15,7 +15,7 @@ class CreateBloodCategoriesTable extends Migration
     {
         Schema::create('blood_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('catg');
+            $table->string('category');
             $table->string('symbol');
             $table->integer('qty');
             $table->timestamps();

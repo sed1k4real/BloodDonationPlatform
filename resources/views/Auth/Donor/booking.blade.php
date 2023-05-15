@@ -12,7 +12,10 @@
 @endif
 <form method="POST" action="{{ route('donation-booking') }}">
     @csrf
-    <div><label for="donation_date">Date</label><input type="date" name="donation_date"></div>
+    <div>
+        <label for="donation_date">Date</label><input type="date" name="donation_date">
+        <label for="donation_time">Time</label><input type="time" name="donation_time">    
+    </div>
     <button type="submit">Book</button>
 </form>
 @endsection('main')

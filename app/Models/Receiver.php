@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
 class Receiver extends User
 {
     protected $fillable = [
-        'user_id'
+        'user_id',
+        'authority',
+        'position',
+        'status'
         ];
 
     public function user()
@@ -16,9 +18,9 @@ class Receiver extends User
         return $this->belongsTo(User::class);
     }
 
-        public function request()
+        public function order()
     {
-        return $this->hasMany(BloodRequest::class);
+        return $this->hasMany(Order::class);
     }
 
     use HasFactory;

@@ -16,14 +16,22 @@ class BloodCategorySeeder extends Seeder
     {
         //
         DB::table('blood_categories')->insert([
-            ['catg' => 'A', 'symbol' => 'A+', 'qty' => 0],
-            ['catg' => 'B', 'symbol' => 'B+', 'qty' => 0],
-            ['catg' => 'AB', 'symbol' => 'AB+', 'qty' => 0],
-            ['catg' => 'O', 'symbol' => 'O+', 'qty' => 0],
-            ['catg' => 'A', 'symbol' => 'A-', 'qty' => 0],
-            ['catg' => 'B', 'symbol' => 'B-', 'qty' => 0],
-            ['catg' => 'AB', 'symbol' => 'AB-', 'qty' => 0],
-            ['catg' => 'O', 'symbol' => 'O-', 'qty' => 0],
+            ['category' => 'blood', 'symbol' => 'A+', 'qty' => 0],
+            ['category' => 'blood', 'symbol' => 'B+', 'qty' => 0],
+            ['category' => 'blood', 'symbol' => 'AB+', 'qty' => 0],
+            ['category' => 'blood', 'symbol' => 'O+', 'qty' => 0],
+            ['category' => 'blood', 'symbol' => 'A-', 'qty' => 0],
+            ['category' => 'blood', 'symbol' => 'B-', 'qty' => 0],
+            ['category' => 'blood', 'symbol' => 'AB-', 'qty' => 0],
+            ['category' => 'blood', 'symbol' => 'O-', 'qty' => 0],
+            ['category' => 'platelet', 'symbol' => 'A+', 'qty' => 0],
+            ['category' => 'platelet', 'symbol' => 'B+', 'qty' => 0],
+            ['category' => 'platelet', 'symbol' => 'AB+', 'qty' => 0],
+            ['category' => 'platelet', 'symbol' => 'O+', 'qty' => 0],
+            ['category' => 'platelet', 'symbol' => 'A-', 'qty' => 0],
+            ['category' => 'platelet', 'symbol' => 'B-', 'qty' => 0],
+            ['category' => 'platelet', 'symbol' => 'AB-', 'qty' => 0],
+            ['category' => 'platelet', 'symbol' => 'O-', 'qty' => 0],
         ]);
     }
 }

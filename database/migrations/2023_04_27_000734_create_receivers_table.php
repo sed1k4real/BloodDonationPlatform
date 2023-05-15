@@ -16,6 +16,9 @@ class CreateReceiversTable extends Migration
         Schema::create('receivers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('authority');
+            $table->string('position');
+            $table->string('status')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

@@ -15,13 +15,13 @@
     <title>Dashboard - @yield('title')</title>
 </head>
 <body>
-        <nav class="nav">
+        <nav class="navbar-admin">
             <a class="navbar-main-logo" href="{{ route('dashboard') }}">Blood <span>Donation</span></a>
             <div class="nav-user-info">
                 <img class="nav-profilePic" src="../../pfp.png" alt="Profile picture"/>
                 <p class="nav-username">{{ Auth::user()->last_name }}</p>
                 <p class="nav-username">{{ Auth::user()->first_name }}</p>
-                <p class="nav-role">@switch( Auth::user()->role_ref )
+                <p class="nav-role">@switch( Auth::user()->role_id )
                         @case('0')
                             Super admin
                         @break
@@ -45,7 +45,7 @@
                     <li class="nav-dropdown">
                         <div class="nav-requests {{ Request::is('requests/pending') || Request::is('requests/booked') || Request::is('requests/denied') || Request::is('requests/done') ? 'active':'' }}"><span class="material-symbols-outlined">Task</span>
                         <a href="#">Requests</a></div>
-                        <ul class="dropdown-menu">
+                        <ul class="drop-menu">
                             <li><a class="{{ Request::is('requests/pending') ? 'active':'' }}" href=" {{ route('donation.pending') }} ">Pending</a></li>
                             <li><a class="{{ Request::is('requests/booked') ? 'active':'' }}" href=" {{ route('donation.booked') }} ">Booked</a></li>
                             <li><a class="{{ Request::is('requests/denied') ? 'active':'' }}" href=" {{ route('donation.denied') }} ">Denied</a></li>
@@ -68,16 +68,16 @@
 
         <script>
             // // Hide the dropdown menu by default
-            $(".dropdown-menu").hide();
+            $(".drop-menu").hide();
 
             // // Show/hide the dropdown menu based on whether it's active or not
             $(".nav-dropdown").on("click", function () {
-                $(this).find(".dropdown-menu").toggle();
+                $(this).find(".drop-menu").toggle();
             });
 
             // // Close the dropdown menu when clicked outside
             $(document).ready(function() {
-                $('.dropdown-menu').on('click', function(event) {
+                $('.drop-menu').on('click', function(event) {
                     event.stopPropagation(); // Stop click event from bubbling up to document
                 });
             });

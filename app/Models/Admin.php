@@ -19,9 +19,9 @@ class Admin extends User
     {
         return $this->hasMany(Donation::class);
     }
-    public function request()
+    public function order()
     {
-        return $this->hasMany(Request::class);
+        return $this->hasMany(Order::class);
     }
     use HasFactory;
 }

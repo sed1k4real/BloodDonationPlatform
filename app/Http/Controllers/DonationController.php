@@ -24,7 +24,8 @@ class DonationController extends Controller
         // Create a new donation record
         $donation = Donation::create([
             'donation_date'=>$data['donation_date'],
-            'room_id' => 2,
+            'donation_time'=>$data['donation_time'],
+            'room_id',
             'donor_id'=> $id,
             'admin_id',
             'schedule_id' => 1

@@ -9,6 +9,7 @@ class Donation extends Model
 {
     protected $fillable = [
         'donation_date',
+        'donation_time',
         'room_id',
         'donor_id',
         'admin_id',
