@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Donation;
-use App\Models\Result;
-use Illuminate\Http\Request;
 use App\Models\Donor;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 
 class DonorController extends Controller
@@ -19,16 +17,16 @@ class DonorController extends Controller
     public function History(Request $request)
     {
         $id = $request->session()->get('id');
-        // $donor = Donor::where('user_id', $id)->firstOrFail();
-        // $donations = $donor->donation()->with('result')->get();
-        $donations = Donation::with('result')->where('donor_id', $id)->get();
+        $donations = Donation::with('donor.bloodCategory','result')->where('donor_id', $id)->get();
 
         return view('Auth/Donor/history', compact('donations'));
     }
 
-    public function Settings()
+    public function Settings(Request $request)
     {
-        return view('Auth/Donor/settings');
+        $id = $request->session()->get('id');
+        $donor = Donor::select(['blood_id'])->find( $id);
+        return view('Auth/Donor/settings', compact('donor'));
     }
 
 }

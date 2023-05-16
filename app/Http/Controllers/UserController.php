@@ -21,7 +21,6 @@ class UserController extends Controller
             'gender_id' => 'required|in:1,2',
             'tel' => 'required|unique:users',
             'email' => 'required|email|unique:users,email,',
-            'password' => 'nullable|min:6|max:32'
         ];
 
         if ($user->last_name != $request->last_name) {
@@ -57,8 +56,8 @@ class UserController extends Controller
         $user->save();
 
         if (!$user->wasChanged()) {
-            return view('Auth/Admin/settings')->with('failMessage', 'Oops something went wrong!');
+            return back()->with('failMessage', 'Oops something went wrong!');
         }
-        return view('Auth/Admin/settings');
+        return back()->with('successMessage', 'Account updated successfuly');
     }
 }

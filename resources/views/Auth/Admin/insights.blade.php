@@ -16,7 +16,7 @@
     <h4>Blood bank levels</h4>
     <div class="row text-center mt-4 bg-light p-3 rounded-4">
         <div class="col-4 border-right">
-            <div class="h4 font-weight-bold mb-0">{{$total}}</div><span class="small text-gray">in total</span>
+            <div class="h4 font-weight-bold mb-0">{{$total}}</div><span class="small text-gray">Sacks in total</span>
         </div>
         <div class="col-4">
             <div class="h4 font-weight-bold mb-0">35%</div><span class="small text-gray">Last month</span>
@@ -49,7 +49,7 @@
     <h4>Platelet bank levels</h4>
     <div class="row text-center mt-4 bg-light p-3 rounded-4">
         <div class="col-4 border-right">
-            <div class="h4 font-weight-bold mb-0">{{$total}}</div><span class="small text-gray">in total</span>
+            <div class="h4 font-weight-bold mb-0">{{$total}}</div><span class="small text-gray">Sacks in total</span>
         </div>
         <div class="col-4">
             <div class="h4 font-weight-bold mb-0">12%</div><span class="small text-gray">Last month</span>

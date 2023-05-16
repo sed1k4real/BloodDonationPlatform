@@ -38,14 +38,14 @@ class CustomAuthController extends Controller
                 $donor = Donor::where('user_id', "=", Auth::id())->first();
                 $id = $donor->id;
                 $request->session()->put('id', $id);
-                return redirect()->route('donor-booking');
+                return redirect()->route('donor.booking');
             break;
 
             case '3':
                 $receiver = Receiver::where('user_id', "=", Auth::id())->first();
                 $id = $receiver->id;
                 $request->session()->put('id', $id);
-                return redirect()->route('reciever.Dashboard');
+                return redirect()->route('receiver.request');
             break;
         }
     }

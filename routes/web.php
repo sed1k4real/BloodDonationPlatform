@@ -20,7 +20,8 @@ Route::middleware('isGuest')->group(function() {
     Route::get('/about', 'App\Http\Controllers\GuestController@AboutUs')->name('about');
 
     Route::get('/register', 'App\Http\Controllers\GuestController@Signup')->name('signup');
-    Route::post('/register', 'App\Http\Controllers\GuestController@RegisterUser')->name('register-user');
+    Route::post('/register/donor', 'App\Http\Controllers\GuestController@RegisterDonor')->name('register-donor');
+    Route::post('/register/receiver', 'App\Http\Controllers\GuestController@RegisterReceiver')->name('register-receiver');
 
     Route::get('/login', 'App\Http\Controllers\GuestController@Login')->name('login');
     Route::post('/login', 'App\Http\Controllers\CustomAuthController@LoginUser')->name('login-user');
@@ -46,21 +47,31 @@ Route::middleware(['auth','isAdmin'])->group(function() {
 
     //Requests Route
     Route::post('/requests/{id}/', 'App\Http\Controllers\DonationController@DonationUpdate')->name('donation.Update');
+    Route::post('/requests/order/{id}/', 'App\Http\Controllers\OrderController@OrdersUpdate')->name('order.Update');
 });
 
 // Donor
 Route::middleware(['auth','isDonor'])->group(function() {
-    Route::get('/booking', 'App\Http\Controllers\DonorController@Booking')->name('donor-booking');
-    Route::post('/booking/donation', 'App\Http\Controllers\DonationController@DonationBooking')->name('donation-booking');
+    Route::get('/booking', 'App\Http\Controllers\DonorController@Booking')->name('donor.booking');
+    Route::post('/booking/donation', 'App\Http\Controllers\DonationController@DonationBooking')->name('donation.booking');
+
+    Route::get('/history/donor', 'App\Http\Controllers\DonorController@History')->name('donor.history');
 
     Route::get('/settings/donor', 'App\Http\Controllers\DonorController@Settings')->name('donor.settings');
-    Route::get('/history/donor', 'App\Http\Controllers\DonorController@History')->name('donor.history');
+    Route::post('/settings/donor/update', 'App\Http\Controllers\UserController@UserUpdate')->name('donor.update');
 
 
 });
 
 // Reciever
 Route::middleware(['auth','isReciever'])->group(function() {
+    Route::get('/order', 'App\Http\Controllers\RecieverController@order')->name('receiver.request');
+    Route::post('/order', 'App\Http\Controllers\OrderController@RequestOrder')->name('receiver.order');
+
+    Route::get('/history/receiver', 'App\Http\Controllers\RecieverController@History')->name('receiver.history');
+
+    Route::get('/settings/receiver', 'App\Http\Controllers\RecieverController@Settings')->name('receiver.settings');
+    Route::post('/settings/receiver/update', 'App\Http\Controllers\UserController@UserUpdate')->name('receiver.update');
 });
 
 // Custom

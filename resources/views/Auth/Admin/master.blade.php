@@ -5,13 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Fonts -->
-    <link rel="stylesheet" href="../../css/admin.css">
-    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../../css/admin.css">
+    <link rel="stylesheet" href="../../../css/bootstrap.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,300,0,0" />
 
     <!-- Script -->
     <script src="../../../js/jquery-3.6.4.min.js"></script>
-
+    <script>
+        setTimeout(function() {
+        $('#message').fadeOut('fast');
+        }, 2000); // 2000 milliseconds = 2 seconds
+    </script>
     <title>Dashboard - @yield('title')</title>
 </head>
 <body>
@@ -59,7 +63,7 @@
             <div class="nav-logout"><span class="material-symbols-outlined">login</span><a href="{{route('logout')}}">Log out</a></div>
         </nav>
         <header class="header">
-            <h2>@yield('title')</h2>
+            <h3>@yield('title')</h3>
             <ul>
                 <li class="header-search"><a href=""><span class="material-symbols-outlined">search</span></a></li>
                 <li class="header-notif"><a href=""><span class="material-symbols-outlined">notifications</span></a></li>

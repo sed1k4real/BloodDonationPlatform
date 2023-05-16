@@ -278,7 +278,7 @@ a:visited
     align-items: center;
     flex-direction: column;
     position: absolute;
-    top: 15%;
+    top: 12%;
     bottom: auto;
     left: 25%;
     right: 25%;
@@ -290,7 +290,7 @@ a:visited
     grid-gap: 1.8rem;
     width: 60vw;
     min-width: 30rem;
-    margin: 3rem 0 3rem 0;
+    margin: 2rem 0 3rem 0;
 }
 .signup-form div:nth-child(12), .signup-form div:nth-child(13)
 {

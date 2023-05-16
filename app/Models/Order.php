@@ -26,7 +26,7 @@ class Order extends Model
     
     public function bloodCategory()
     {
-        return $this->belongsTo(BloodCategory::class);
+        return $this->belongsTo(BloodCategory::class, 'blood_id');
     }
     
     public function result()

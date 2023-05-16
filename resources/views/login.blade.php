@@ -6,7 +6,7 @@
 @section('content')
     <div>
         <div class="login">
-            <h1><span>Good to see you</span> agian!</h1>
+            <h3><span>Good to see you</span> agian!</h3>
             @if(Session::has('successMessage'))
                     <span class="text-success" id="message">{{Session::get('successMessage')}}</span>
             @endif
@@ -15,9 +15,9 @@
                 <div>
                     <label for="">Email</label><br>
                     <input type="email" name="email" value="{{old('email')}}" placeholder="xyz123@email.com" required>
-                    <!-- @if(Session::has('emailError'))
+                    @if(Session::has('emailError'))
                             <span class="text-danger">{{Session::get('emailError')}}</span>
-                    @endif -->
+                    @endif
                     <span class="text-danger">@error('email') {{$message}} @enderror</span>
                 </div>
                 <div>

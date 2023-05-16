@@ -31,7 +31,7 @@ class GuestController extends Controller
         return view('signup');
     }
 
-    public function RegisterUser(Request $request)
+    public function RegisterDonor(Request $request)
     {
         // Rules
         $request->validate([
@@ -39,7 +39,6 @@ class GuestController extends Controller
             'last_name' => 'required|max:255',
             'birthdate' => 'required|date',
             'gender_id' => 'required|in:1,2',
-            'role_id' => 'required|in:2,3',
             'tel' => 'required',
             'chro_dis' => 'nullable|string',
             'blood_id' => 'required|exists:blood_categories,id',
@@ -53,40 +52,67 @@ class GuestController extends Controller
             'first_name' => $data['first_name'],
             'birthdate' => $data['birthdate'],
             'gender_id' => $data['gender_id'],
-            'role_id' => $data['role_id'],
+            'role_id' => 2,
             'tel' => $data['tel'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        switch( $user->role_id ){
-            case '2':
-                $donor = Donor::create([
-                'user_id'=> $user->id,
-                'blood_id' => $data['blood_id']
-                ]);
+        
+        $donor = Donor::create([
+        'user_id'=> $user->id,
+        'chro_dis'=> $data['chro_dis'],
+        'blood_id' => $data['blood_id']
+        ]);
 
-                if(!$donor)
-                {
-                    return back()->with('failMessage', 'Oops! Something went wrong');
-                }else{
-                    return redirect()->intended('login')->with('successMessage', 'You have registered successfuly');
-                }
-            break;
-            case '3':
-                $receiver = Receiver::create([
-                    'user_id'=> $user->id
-                ]);
-
-                // Result message
-                if(!$receiver)
-                {
-                    return back()->with('failMessage', 'Oops! Something went wrong');
-                }else{
-                    return redirect()->intended('login')->with('successMessage', 'You have registered successfuly');
-                }
-            break;
+        if(!$user || !$donor)
+        {
+            return back()->with('failMessage', 'Oops! Something went wrong');
+        }else{
+            return redirect()->intended('login')->with('successMessage', 'You have registered successfuly');
         }
+        return redirect()->intended('signup');
+    }
 
+    public function RegisterReceiver(Request $request)
+    {
+        // Rules
+        $request->validate([
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'birthdate' => 'required|date',
+            'gender_id' => 'required|in:1,2',
+            'tel' => 'required',
+            'authority' => 'required|string',
+            'position' => 'required|string',
+            'status' => 'nullable|string',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:4'
+        ]);
+
+        $data = $request->all();
+        $user = User::create([
+            'last_name' => $data['last_name'],
+            'first_name' => $data['first_name'],
+            'birthdate' => $data['birthdate'],
+            'gender_id' => $data['gender_id'],
+            'role_id' => 3,
+            'tel' => $data['tel'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+        $receiver = Receiver::create([
+            'user_id'=> $user->id,
+            'authority'=> $data['authority'],
+            'position'=> $data['position'],
+        ]);
+
+        // Result message
+        if(!$user || !$receiver)
+        {
+            return back()->with('failMessage', 'Oops! Something went wrong');
+        }else{
+            return redirect()->intended('login')->with('successMessage', 'You have registered successfuly');
+        }
         return redirect()->intended('signup');
     }
 }

@@ -1,13 +1,13 @@
-@extends('auth.admin.master')
+@extends('auth.receiver.master')
 
 @section('title') {{'Settings'}} @endsection
 
 @section('main')
-
 <main>
+    <div>
     <div class="settings">
         <h2>Account settings</h2>
-        <form class="settings-form" action="{{route('admin-update')}}" method="post" id="settings-form">
+        <form class="settings-form" action="{{route('receiver.update')}}" method="post" id="settings-form">
             @csrf
             <div><label for="last_name">Last name</label><br><input class="settings-form-input" type="text" name="last_name" value="{{ old('last_name', Auth::user()->last_name) }}"></div>
             <div><label for="first_name">First name</label><br><input class="settings-form-input" type="text" name="first_name" value="{{  old('first_name', Auth::user()->first_name) }}"></div>
@@ -21,7 +21,7 @@
                 </fieldset>
             </div>
             <div><label for="">Email</label><br><input class="settings-form-input" type="email" name="email" value="{{ old('email', Auth::user()->email) }}"></div>
-            <div><label for="">Old password</label><br><input class="settings-form-input" type="password" name="password" id="password" placeholder="Leave blank to keep the same password"></div>
+            <div><label for="password">New password</label><br><input class="settings-form-input" type="password" name="password" id="password" placeholder="Leave blank to keep the same password"></div>
             <div><button type="submit">Update</button></div>
         </form>
         @if(Session::has('successMessage'))
@@ -42,6 +42,5 @@
         passwordField.removeAttribute('name');
         }
     });
-
 </script>
 @endsection('main')

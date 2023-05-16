@@ -425,3 +425,11 @@ nav img {
 .bank-banner-bg{
     padding: 1rem;
 }
+.bg-grad-1{
+    background: linear-gradient(30deg, #eb3f3f 10%, #FF6767);
+}
+.row-1{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+}

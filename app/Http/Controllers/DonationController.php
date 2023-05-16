@@ -7,6 +7,7 @@ use App\Models\Donation;
 use Illuminate\Http\Request;
 use App\Models\Result;
 use App\Models\Donor;
+use App\Models\Order;
 
 class DonationController extends Controller
 {
@@ -16,6 +17,7 @@ class DonationController extends Controller
         // Validate data
         $data = $request->validate([
             'donation_date' => 'required|date',
+            'donation_time' => 'required|date_format:H:i'
         ]);
 
         // Get the donor id
@@ -38,7 +40,7 @@ class DonationController extends Controller
         ]);
 
         // Result message
-        if (!$donation && !$result) {
+        if (!$donation || !$result) {
             return back()->with('failMessage', 'Oops! Something went wrong');
         }
         return back()->with('successMessage', 'You have booked successfully');
@@ -73,7 +75,6 @@ class DonationController extends Controller
                 $donation->result->status = 'done';
                 $donation->result->save();
             }
-
         }
 
         $donation->result->save();
@@ -90,11 +91,15 @@ class DonationController extends Controller
         $statusQuery = 'pending';
 
         $data = $this->FilterDonation($searchQuery, $optionQuery, $statusQuery);
+        $order = $this->FiltredOrders($searchQuery, $optionQuery, $statusQuery);
 
         $allDonations = $data['allDonations'];
         $filtredDonations = $data['filtredDonations'];
 
-        return view('Auth/Admin/jobs', compact('allDonations', 'filtredDonations'));
+        $allOrders = $order['allOrders'];
+        $filtredOrders = $order['filtredOrders'];
+
+        return view('Auth/Admin/jobs', compact('allDonations', 'filtredDonations', 'allOrders', 'filtredOrders'));
     }
 
     public function BookedDonation(Request $request)
@@ -104,11 +109,15 @@ class DonationController extends Controller
         $statusQuery = 'booked';
 
         $data = $this->FilterDonation($searchQuery, $optionQuery, $statusQuery);
+        $order = $this->FiltredOrders($searchQuery, $optionQuery, $statusQuery);
 
         $allDonations = $data['allDonations'];
         $filtredDonations = $data['filtredDonations'];
 
-        return view('Auth/Admin/jobsBooked', compact('allDonations', 'filtredDonations'));
+        $allOrders = $order['allOrders'];
+        $filtredOrders = $order['filtredOrders'];
+
+        return view('Auth/Admin/jobsBooked', compact('allDonations', 'filtredDonations', 'allOrders', 'filtredOrders'));
     }
 
     public function DeniedDonation(Request $request)
@@ -122,7 +131,12 @@ class DonationController extends Controller
         $allDonations = $data['allDonations'];
         $filtredDonations = $data['filtredDonations'];
 
-        return view('Auth/Admin/jobsDenied', compact('allDonations', 'filtredDonations'));
+        $order = $this->FiltredOrders($searchQuery, $optionQuery, $statusQuery);
+
+        $allOrders = $order['allOrders'];
+        $filtredOrders = $order['filtredOrders'];
+
+        return view('Auth/Admin/jobsDenied', compact('allDonations', 'filtredDonations', 'allOrders', 'filtredOrders'));
     }
     public function DoneDonation(Request $request)
     {
@@ -135,7 +149,12 @@ class DonationController extends Controller
         $allDonations = $data['allDonations'];
         $filtredDonations = $data['filtredDonations'];
 
-        return view('Auth/Admin/jobsDone', compact('allDonations', 'filtredDonations'));
+        $order = $this->FiltredOrders($searchQuery, $optionQuery, $statusQuery);
+        
+        $allOrders = $order['allOrders'];
+        $filtredOrders = $order['filtredOrders'];
+
+        return view('Auth/Admin/jobsDone', compact('allDonations', 'filtredDonations', 'allOrders', 'filtredOrders'));
     }
 
     private function FilterDonation($searchQuery, $optionQuery, $statusQuery)
@@ -163,6 +182,33 @@ class DonationController extends Controller
 
         $allDonation = $allDonation->paginate(10);
         return ['allDonations'=> $allDonation, 'filtredDonations' => $filtredDonation];
+    }
+
+    private function FiltredOrders($searchQuery, $optionQuery, $statusQuery)
+    {
+        $order = Order::query();
+        $filtredOrders= null;
+
+        if($searchQuery && $optionQuery){
+            if($optionQuery == 'id' && $searchQuery ){
+                $filtredOrders = $order->with('receiver.user', 'result')
+                                ->whereHas('result', function($query) use ($statusQuery){
+                                $query->where('status', 'like', '%' . $statusQuery . '%');
+                                })
+                                ->where('id', 'like',  '%' . $searchQuery . '%')
+                                ->orderBy('created_at', 'desc');
+            }else{
+                $filtredOrders = $order->where($optionQuery, 'like', '%' . $searchQuery . '%');
+            }
+            $filtredOrders = $filtredOrders->paginate(15);
+        }
+        $allOrders = $order->with('receiver.user', 'result')
+                    ->whereHas('result', function($query) use ($statusQuery){
+                    $query->where('status', 'like', '%' . $statusQuery . '%');
+                    })->orderBy('created_at', 'desc');
+
+        $allOrders = $allOrders->paginate(15);
+        return ['allOrders'=> $allOrders, 'filtredOrders' => $filtredOrders];
     }
 
     public function DonationLog(Request $request)

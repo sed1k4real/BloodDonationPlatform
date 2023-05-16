@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\BloodCategory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
-use App\Models\Job;
-
+use App\Models\Donation;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -40,9 +39,16 @@ class AdminController extends Controller
 
     public function Dashboard(Request $request)
     {
+        $blood = BloodCategory::sum('qty');
+        $donation = Donation::with('result')
+                ->whereHas('result', function($query){
+                    $query->where('status', 'done');
+                })->count();
+
+
         $data = $this->getData($request);
         $request->session()->put('data', $data);
-        return view('Auth/Admin/dashboard');
+        return view('Auth/Admin/dashboard', compact('blood', 'donation'));
     }
 
     public function Requests(Request $request)
